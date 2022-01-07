@@ -24,4 +24,9 @@
    - Press 'Next'.
 5. Devices and services.
    - Here we add devices and services later, so press 'Finish'.
-6.
+6. Setup to utilize the MariaDB database.
+   - Edit the file `/srv/ha/config/configuration.yaml` and add the following:
+```
+
+```
+7. 
