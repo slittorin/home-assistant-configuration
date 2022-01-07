@@ -5,24 +5,23 @@
 - Install HA with [Home Assistance install](https://github.com/slittorin/home-assistant-install/).
 - If not otherwise stated, the user `pi` performs all actions.
 
-## Preparation
+## Initial setup
 
-1. Under `/srv`:
-   - Create the file `.env`.
-   - Create the file `/srv/docker-compose.yml` with the following content:
-     ```
-     version: '3'
-     
-     services:
-     
-     volumes:
-     ```
-
-## Installation for MariaDB
-
-1. Check versions of available docker images for MariaDB at [Docker - MariaDB](https://hub.docker.com/_/mariadb).
-   - If you do not want the 'latest' version, , use version number.
-   - At time of writing (20220207) the 'latest' version is 10.6.5 (isolated with `sudo docker image inspect mariadb` and looking for 'MARIADB_VERSION').
-2. Create the directory `/srv/ha-db`, and the following sub-directories:
-   - At present no specific directories are used.
-3. For the following file `/srv/.env` add the following content:
+1. Go to the HA page (servername:8123).
+2. Create the first administrator account:
+   - Choose 'admin' as the first account-name.
+   - Choose a secure password.
+   - Press 'Create account'.
+3. Name and localization:
+   - Enter the name of the HA installation.
+   - Enter GPS-coordinates. Important to get the right weather data later on.
+   - Enter the Timezone.
+   - Enter the elevation.
+   - Enter unit and currency.
+   - Press 'Next'.
+4. Analytics:
+   - Decide if and what type of analytics to share.
+   - Press 'Next'.
+5. Devices and services.
+   - Here we add devices and services later, so press 'Finish'.
+6.
