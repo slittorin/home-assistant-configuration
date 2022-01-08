@@ -1,4 +1,4 @@
-# Home Assistant - Setup
+# Home Assistant - Configuration
 
 ## Governing principle
 
