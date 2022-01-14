@@ -6,6 +6,7 @@
 - [Governing principles](https://github.com/slittorin/home-assistant-configuration#governing-principles)
 - [Integrations](https://github.com/slittorin/home-assistant-configuration#integrations)
   - [Integration - Weather](https://github.com/slittorin/home-assistant-configuration#integration---weather)
+    - [Sensor - Home Assistant database size](https://github.com/slittorin/home-assistant-configuration#integration---unifi)
   - [Integration - SQL](https://github.com/slittorin/home-assistant-configuration#integration---sql)
   - [Integration - Unifi](https://github.com/slittorin/home-assistant-configuration#integration---unifi)
 
