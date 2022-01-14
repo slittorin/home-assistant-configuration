@@ -39,8 +39,6 @@ We do not need any integration as this is built into HA.
 
 ### Home Assistant database size
 
-https://www.home-assistant.io/integrations/sql/
-
 To be able to gather information on the size and state of MariaDB database we utilize the built in SQL integration.
 
 1. Through the `File Editor` add-on, edit the file `/config/configuration.yaml` and add after `sensor:` (add the row `sensor:` if not created, change also `password`):
