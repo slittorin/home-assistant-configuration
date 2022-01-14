@@ -47,6 +47,8 @@ To be able to gather information on the size and state of MariaDB database we ut
      ```
      - platform: sql
        db_url: !secret recorder_db_url
+       # Scan every 10:t minute.
+       scan_interval: 600
        queries:
          - name: HA DB size
            query: 'SELECT table_schema "database", Round(Sum(data_length + index_length) / 1024 / 1024, 1) "value" FROM information_schema.tables WHERE table_schema="homeassistant" GROUP BY table_schema;'
