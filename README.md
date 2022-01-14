@@ -1,6 +1,12 @@
 # Home Assistant - Configuration
 
-## Governing principle
+## Table of content
+
+- [Governing principles](https://github.com/slittorin/home-assistant-setup#conceptual-design)
+- [Governing principles](https://github.com/slittorin/home-assistant-setup#governing-principles)
+- [Setup for Server 1](https://github.com/slittorin/home-assistant-setup#setup-for-server-1)
+
+## Governing principles
 
 - Install HA with [Home Assistance install](https://github.com/slittorin/home-assistant-install/).
 - If not otherwise stated, the user `pi` performs all actions.
