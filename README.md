@@ -3,34 +3,30 @@
 ## Table of content
 
 - [Governing principles](https://github.com/slittorin/home-assistant-configuration#governing-principles)
+- [Generic integrations]()
+- [Integration - Weather]()
+- [Integration - SQL]()
 
 ## Governing principles
 
-- Install HA with [Home Assistance install](https://github.com/slittorin/home-assistant-install/).
-- If not otherwise stated, the user `pi` performs all actions.
+- Setup HA with [Home Assistance setup](https://github.com/slittorin/home-assistant-setup).
 
-## Initial setup
+# Generic integrations
 
-1. Go to the HA page (servername:8123).
-2. Create the first administrator account:
-   - Choose 'admin' as the first account-name.
-   - Choose a secure password.
-   - Press 'Create account'.
-3. Name and localization:
-   - Enter the name of the HA installation.
-   - Enter GPS-coordinates. Important to get the right weather data later on.
-   - Enter the Timezone.
-   - Enter the elevation.
-   - Enter unit and currency.
-   - Press 'Next'.
-4. Analytics:
-   - Decide if and what type of analytics to share.
-   - Press 'Next'.
-5. Devices and services.
-   - Here we add devices and services later, so press 'Finish'.
-6. Setup to utilize the MariaDB database.
-   - Edit the file `/srv/ha/config/configuration.yaml` and add the following:
-```
+## Integration - Weather
 
-```
-7. 
+We want to have a more accurate weather integration for Sweden than the built in, so we utilize SMHI.
+
+1. Add and enable integration `SMHI`, utilize the GPS coordinates set in setup/onboarding stage.
+2. Disable the default integration (in my setup, 'met.no').
+3. Delete thereafter the default integration.
+   - If we this at initial setup of the HA, we do not loose any valid data.
+   - If you want to keep historical data, do not delete this integration.
+
+## Integration - SQL
+
+To be able to gather information on the size and state of MariaDB database we enable the SQL integration.
+
+1. 
+2.
+3.
