@@ -2,9 +2,7 @@
 
 ## Table of content
 
-- [Governing principles](https://github.com/slittorin/home-assistant-setup#conceptual-design)
-- [Governing principles](https://github.com/slittorin/home-assistant-setup#governing-principles)
-- [Setup for Server 1](https://github.com/slittorin/home-assistant-setup#setup-for-server-1)
+- [Governing principles](https://github.com/slittorin/home-assistant-configuration#governing-principles)
 
 ## Governing principles
 
