@@ -2,6 +2,7 @@
 
 ## Table of content
 
+- [Generic information](https://github.com/slittorin/home-assistant-configuration#generic-information)
 - [Governing principles](https://github.com/slittorin/home-assistant-configuration#governing-principles)
 - [Generic integrations](https://github.com/slittorin/home-assistant-configuration#generic-integrations)
   - [Integration - Weather](https://github.com/slittorin/home-assistant-configuration#integration---weather)
