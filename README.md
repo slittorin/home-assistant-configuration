@@ -34,13 +34,13 @@ To be able to gather information on the size and state of MariaDB database we ut
 
 1. Through the `File Editor` add-on, edit the file `/config/configuration.yaml` and add after `sensor:` (add the row `sensor:` if not created, change also `password`):
      ```
-  - platform: sql
-    db_url: mysql://homeassistant:alskling2002!@localhost/hass
-    queries:
-      - name: HA DB size
-        query: 'SELECT table_schema "database", Round(Sum(data_length + index_length) / 1024 / 1024, 1) "value" FROM information_schema.tables WHERE table_schema="hass" GROUP BY table_schema;'
-        column: "value"
-        unit_of_measurement: MB
+     - platform: sql
+       db_url: mysql://homeassistant:alskling2002!@localhost/hass
+       queries:
+         - name: HA DB size
+           query: 'SELECT table_schema "database", Round(Sum(data_length + index_length) / 1024 / 1024, 1) "value" FROM information_schema.tables WHERE table_schema="hass" GROUP BY table_schema;'
+           column: "value"
+           unit_of_measurement: MB
      ```
 2. Goto `Configuration` -> `Settings` -> `Server Controls` and press `Check Configuration`.
    - The output should state 'Configuration valid'. If not, change the recorder config above.
