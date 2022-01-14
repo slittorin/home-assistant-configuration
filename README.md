@@ -7,6 +7,7 @@
 - [Integrations](https://github.com/slittorin/home-assistant-configuration#integrations)
   - [Integration - Weather](https://github.com/slittorin/home-assistant-configuration#integration---weather)
   - [Integration - SQL](https://github.com/slittorin/home-assistant-configuration#integration---sql)
+  - [Integration - Unifi](https://github.com/slittorin/home-assistant-configuration#integration---unifi)
 
 ## Generic information
 
@@ -37,7 +38,7 @@ We want to have a more accurate weather integration for Sweden than the built in
 
 We do not need any integration as this is built into HA.
 
-### Home Assistant database size
+### Sensor - Home Assistant database size
 
 To be able to gather information on the size and state of MariaDB database we utilize the built in SQL integration.
 
@@ -54,11 +55,6 @@ To be able to gather information on the size and state of MariaDB database we ut
 2. Goto `Configuration` -> `Settings` -> `Server Controls` and press `Check Configuration`.
    - The output should state 'Configuration valid'. If not, change the recorder config above.
    - On the same page press `Restart` under `Server management`.
-3. Add a sensor card to the Overview page.
-   - Entity: `HA DB size`
-   - Name: `Home Assistant Database size`
-   - Icon: `mdi:database`
-   - Unit: `MB`
 
 ## Integration - Unifi
 
