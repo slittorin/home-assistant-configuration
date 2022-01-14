@@ -26,10 +26,13 @@ We want to have a more accurate weather integration for Sweden than the built in
 
 ## Integration - SQL
 
-To be able to gather information on the size and state of MariaDB database we enable the SQL integration.
+We do not need any integration as this is built into HA.
 
-1. We do not need any integration as this is built into HA.
-2. Through the `File Editor` add-on, edit the file `/config/configuration.yaml` and add after `sensor:` (add the row `sensor:` if not created, change also `password`):
+### Home Assistant database size
+
+To be able to gather information on the size and state of MariaDB database we utilize the built in SQL integration.
+
+1. Through the `File Editor` add-on, edit the file `/config/configuration.yaml` and add after `sensor:` (add the row `sensor:` if not created, change also `password`):
      ```
        - platform: sql
          db_url: mysql://homeassistant:password@localhost/hass
@@ -39,6 +42,11 @@ To be able to gather information on the size and state of MariaDB database we en
            column: "value"
            unit_of_measurement: MB
      ```
-3. Goto `Configuration` -> `Settings` -> `Server Controls` and press `Check Configuration`.
+2. Goto `Configuration` -> `Settings` -> `Server Controls` and press `Check Configuration`.
    - The output should state 'Configuration valid'. If not, change the recorder config above.
-   - On the same page press `Restart` under `Server management`.     
+   - On the same page press `Restart` under `Server management`.
+3. Add a sensor card to the Overview page.
+   - Entity: `HA DB size`
+   - Name: `Home Assistant Database size`
+   - Icon: `mdi:database`
+   - Unit: `MB`
