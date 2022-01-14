@@ -38,7 +38,7 @@ To be able to gather information on the size and state of MariaDB database we ut
        db_url: mysql://homeassistant:alskling2002!@localhost/hass
        queries:
          - name: HA DB size
-           query: 'SELECT table_schema "database", Round(Sum(data_length + index_length) / 1024 / 1024, 1) "value" FROM information_schema.tables WHERE table_schema="hass" GROUP BY table_schema;'
+           query: 'SELECT table_schema "database", Round(Sum(data_length + index_length) / 1024 / 1024, 1) "value" FROM information_schema.tables WHERE table_schema="homeassistant" GROUP BY table_schema;'
            column: "value"
            unit_of_measurement: MB
      ```
