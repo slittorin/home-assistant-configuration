@@ -4,7 +4,7 @@
 
 - [Generic information](https://github.com/slittorin/home-assistant-configuration#generic-information)
 - [Governing principles](https://github.com/slittorin/home-assistant-configuration#governing-principles)
-- [Integrations](https://github.com/slittorin/home-assistant-configuration#generic-integrations)
+- [Integrations](https://github.com/slittorin/home-assistant-configuration#integrations)
   - [Integration - Weather](https://github.com/slittorin/home-assistant-configuration#integration---weather)
   - [Integration - SQL](https://github.com/slittorin/home-assistant-configuration#integration---sql)
 
@@ -33,7 +33,7 @@ We want to have a more accurate weather integration for Sweden than the built in
    - If we this at initial setup of the HA, we do not loose any valid data.
    - If you want to keep historical data, do not delete this integration.
 
-## Integratiom - SQL
+## Integration - SQL
 
 We do not need any integration as this is built into HA.
 
