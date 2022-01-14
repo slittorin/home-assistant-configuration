@@ -7,6 +7,14 @@
   - [Integration - Weather](https://github.com/slittorin/home-assistant-configuration#integration---weather)
   - [Integration - SQL](https://github.com/slittorin/home-assistant-configuration#integration---sql)
 
+## Generic information
+
+For all changes to Home Assistant configuration files, you usually need to restart:
+-  Goto `Configuration` -> `Settings` -> `Server Controls` and press `Check Configuration`.
+   - The output should state 'Configuration valid'. If not, change the recorder config above.
+   - On the same page press `Restart` under `Server management`.
+- Any warnings or errors can be found in the file `/config/home-assistant.log`.
+
 ## Governing principles
 
 - Setup HA with [Home Assistance setup](https://github.com/slittorin/home-assistant-setup).
@@ -29,6 +37,8 @@ We want to have a more accurate weather integration for Sweden than the built in
 We do not need any integration as this is built into HA.
 
 ### Home Assistant database size
+
+https://www.home-assistant.io/integrations/sql/
 
 To be able to gather information on the size and state of MariaDB database we utilize the built in SQL integration.
 
