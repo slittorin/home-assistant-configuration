@@ -6,8 +6,6 @@
 - [Governing principles](https://github.com/slittorin/home-assistant-configuration#governing-principles)
 - [Integrations](https://github.com/slittorin/home-assistant-configuration#integrations)
   - [Integration - Weather](https://github.com/slittorin/home-assistant-configuration#integration---weather)
-    - [Sensor - Home Assistant database size](https://github.com/slittorin/home-assistant-configuration#integration---unifi)
-  - [Integration - SQL](https://github.com/slittorin/home-assistant-configuration#integration---sql)
   - [Integration - Unifi](https://github.com/slittorin/home-assistant-configuration#integration---unifi)
 
 ## Generic information
@@ -26,26 +24,11 @@ For all changes to Home Assistant configuration files, you usually need to resta
 
 # Integrations
 
-## Integration - Weather
+## Generic - Home Assistant
 
-We want to have a more accurate weather integration for Sweden than the built in, so we utilize SMHI.
+We want to keep track of database sizes and number of objects managed by Home Assistant.
 
-1. Add and enable integration `SMHI`.
-   - Utilize the GPS coordinates set in setup/onboarding stage.
-3. Disable the default integration (in my setup, 'met.no').
-4. Delete thereafter the default integration.
-   - If we this at initial setup of the HA, we do not loose any valid data.
-   - If you want to keep historical data, do not delete this integration.
-
-## Integration - SQL
-
-We do not need any integration as this is built into HA.
-
-### Sensor - Home Assistant database size
-
-To be able to gather information on the size and state of MariaDB database we utilize the built in SQL integration.
-
-1. Through the `File Editor` add-on, edit the file `/config/configuration.yaml` and add after `sensor:` (add the row `sensor:` if not created, change also `password`):
+1. Through the `File Editor` add-on, edit the file `/config/configuration.yaml` and add after `sensor:` (add the row `sensor:`):
      ```
      - platform: sql
        db_url: !secret recorder_db_url
@@ -57,9 +40,29 @@ To be able to gather information on the size and state of MariaDB database we ut
            column: "value"
            unit_of_measurement: MB
      ```
-2. Goto `Configuration` -> `Settings` -> `Server Controls` and press `Check Configuration`.
-   - The output should state 'Configuration valid'. If not, change the recorder config above.
-   - On the same page press `Restart` under `Server management`.
+
+## Integration - Weather
+
+We want to have a more accurate weather integration for Sweden than the built in, so we utilize SMHI.
+
+1. Add and enable integration `SMHI`.
+   - Utilize the GPS coordinates set in setup/onboarding stage.
+3. Disable the default integration (in my setup, 'met.no').
+4. Delete thereafter the default integration.
+   - If we this at initial setup of the HA, we do not loose any valid data.
+   - If you want to keep historical data, do not delete this integration.
+5. Through the `File Editor` add-on, edit the file `/config/configuration.yaml` and add after `template:` (add the row `template:` if not created):
+     ```
+       - platform: sql
+        db_url: !secret recorder_db_url
+        # Scan every 10:t minute.
+        scan_interval: 600
+        queries:
+          - name: home_assistant_db_size
+            query: 'SELECT table_schema "database", Round(Sum(data_length + index_length) / 1024 / 1024, 1) "value" FROM information_schema.tables WHERE table_schema="homeassistant" GROUP BY table_schema;'
+            column: "value"
+            unit_of_measurement: MB
+     ```
 
 ## Integration - Unifi
 
