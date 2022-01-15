@@ -34,8 +34,7 @@ We want to keep track of database sizes and number of objects managed by Home As
      # We keep track of the MariaDB database size.
      - platform: sql
        db_url: !secret recorder_db_url
-       # Scan every 10:t minute.
-       scan_interval: 600
+       scan_interval: 600 # Scan every 10:t minute.
        queries:
          - name: home_assistant_db_size
            query: 'SELECT table_schema "database", Round(Sum(data_length + index_length) / 1024 / 1024, 1) "value" FROM information_schema.tables WHERE table_schema="homeassistant" GROUP BY table_schema;'
@@ -55,15 +54,15 @@ We want to have a more accurate weather integration for Sweden than the built in
    - If you want to keep historical data, do not delete this integration.
 5. Through the `File Editor` add-on, edit the file `/config/templates.yaml` and add:
      ```
-       - platform: sql
-        db_url: !secret recorder_db_url
-        # Scan every 10:t minute.
-        scan_interval: 600
-        queries:
-          - name: home_assistant_db_size
-            query: 'SELECT table_schema "database", Round(Sum(data_length + index_length) / 1024 / 1024, 1) "value" FROM information_schema.tables WHERE table_schema="homeassistant" GROUP BY table_schema;'
-            column: "value"
-            unit_of_measurement: MB
+- platform: template
+    sensors:
+    # We want to keep track of the angle of the sun.
+    weather_solar_angle:
+      friendly_name: "Sun angle"
+      unit_of_measurement: 'degrees'
+      # Scan every 10:t minute.
+      scan_interval: 600
+      value_template: "{{ state_attr('sun.sun', 'elevation') }}"
      ```
 
 ## Integration - Unifi
