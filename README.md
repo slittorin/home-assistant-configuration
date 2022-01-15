@@ -18,6 +18,8 @@ For all changes to Home Assistant configuration files, you usually need to resta
 - Any warnings or errors can be found in the file `/config/home-assistant.log`.
 - Naming convention:
   - Entity ID: type, area, location, device, lower-case with `_` as delimiter.
+- Verify and set unit of measurement for all entities/sensors.
+  - Standard units is found [here](https://github.com/home-assistant/core/blob/dev/homeassistant/const.py).
 
 ## Governing principles
 
@@ -70,46 +72,63 @@ We want to have a more accurate weather integration for Sweden than the built in
       # We want to keep track of weather temperature.
       weather_temperature:
         friendly_name: "Weather temperature"
+        unit_of_measurement: '°C'
         value_template: "{{ state_attr('weather.smhi_home', 'temperature') }}"
         
       # We want to keep track of weather humidity.
       weather_humidity:
         friendly_name: "Weather humidity"
+        unit_of_measurement: '%'
         value_template: "{{ state_attr('weather.smhi_home', 'humidity') }}"
         
       # We want to keep track of weather wind speed.
-      weather_wind_speed:
+      weather_wind_speed_kmh:
         friendly_name: "Weather wind speed"
+        unit_of_measurement: 'km/h' # SMHI integration gives km/h.
         value_template: "{{ state_attr('weather.smhi_home', 'wind_speed') }}"
+      weather_wind_speed_ms:
+        friendly_name: "Weather wind speed"
+        unit_of_measurement: 'm/s' # SMHI integration gives km/h, so we convert.
+        value_template: "{{ state_attr('weather.smhi_home', 'wind_speed') / 3.6 }}"
         
       # We want to keep track of weather wind bearing.
       weather_wind_bearing:
         friendly_name: "Weather wind bearing"
+        unit_of_measurement: 'degrees'
         value_template: "{{ state_attr('weather.smhi_home', 'wind_bearing') }}"
         
       # We want to keep track of weather wind gust speed.
-      weather_wind_gust_speed:
+      weather_wind_gust_speed_kmh:
         friendly_name: "Weather wind gust speed"
+        unit_of_measurement: 'km/h' # SMHI integration gives km/h.
         value_template: "{{ state_attr('weather.smhi_home', 'wind_gust_speed') }}"
+      weather_wind_gust_speed_ms:
+        friendly_name: "Weather wind gust speed"
+        unit_of_measurement: 'm/s' # SMHI integration gives km/h, so we convert.
+        value_template: "{{ state_attr('weather.smhi_home', 'wind_gust_speed') / 3.6 }}"
         
       # We want to keep track of weather pressure.
       weather_pressure:
         friendly_name: "Weather pressure"
+        unit_of_measurement: 'hPa' # SMHI integration gives hectopascal.
         value_template: "{{ state_attr('weather.smhi_home', 'pressure') }}"
         
       # We want to keep track of weather visibility.
       weather_visibility:
         friendly_name: "Weather visibility"
+        unit_of_measurement: 'km' # SMHI integration gives km
         value_template: "{{ state_attr('weather.smhi_home', 'visibility') }}"
         
       # We want to keep track of weather cloudiness.
       weather_cloudiness:
         friendly_name: "Weather cloudiness"
+        unit_of_measurement: '%' # SMHI integration gives 0-100 (%).
         value_template: "{{ state_attr('weather.smhi_home', 'cloudiness') }}"
         
       # We want to keep track of weather thunder probability.
       weather_thunder_probability:
         friendly_name: "Weather thunder probability"
+        unit_of_measurement: '%' # SMHI integration gives 0-100 (%).
         value_template: "{{ state_attr('weather.smhi_home', 'thunder_probability') }}"
 ```
 
