@@ -29,7 +29,7 @@ For all changes to Home Assistant configuration files, you usually need to resta
 
 We want to keep track of database sizes and number of objects managed by Home Assistant.
 
-1. Through the `File Editor` add-on, edit the file `/config/configuration.yaml` and add after `sensor:` (add the row `sensor:`):
+1. Through the `File Editor` add-on, edit the file `/config/sensors.yaml` and add:
      ```
      - platform: sql
        db_url: !secret recorder_db_url
@@ -52,7 +52,7 @@ We want to have a more accurate weather integration for Sweden than the built in
 4. Delete thereafter the default integration.
    - If we this at initial setup of the HA, we do not loose any valid data.
    - If you want to keep historical data, do not delete this integration.
-5. Through the `File Editor` add-on, edit the file `/config/configuration.yaml` and add after `template:` (add the row `template:` if not created):
+5. Through the `File Editor` add-on, edit the file `/config/templates.yaml` and add:
      ```
        - platform: sql
         db_url: !secret recorder_db_url
