@@ -55,31 +55,62 @@ We want to have a more accurate weather integration for Sweden than the built in
 5. Through the `File Editor` add-on, edit the file `/config/sensors.yaml` and add after `  - platform: template` (if there is not template-row, add this row (mind the spaces)):
 ```
     sensors:
-      # We want to keep track of the angle of the sun.
-      weather_solar_elevation:
+      # We want to keep track of the elevation of the sun.
+      weather_sun_elevation:
         friendly_name: "Weather sun elevation"
         unit_of_measurement: 'degrees'
         value_template: "{{ state_attr('sun.sun', 'elevation') }}"
-      # We want to keep track of temperature.
+        
+      # We want to keep track of the azimuth of the sun.
+      weather_sun_azimuth:
+        friendly_name: "Weather sun azimuth"
+        unit_of_measurement: 'degrees'
+        value_template: "{{ state_attr('sun.sun', 'azimuth') }}"
+        
+      # We want to keep track of weather temperature.
       weather_temperature:
         friendly_name: "Weather temperature"
         value_template: "{{ state_attr('weather.smhi_home', 'temperature') }}"
-      # We want to keep track of humidity.
+        
+      # We want to keep track of weather humidity.
       weather_humidity:
         friendly_name: "Weather humidity"
         value_template: "{{ state_attr('weather.smhi_home', 'humidity') }}"
-      # We want to keep track of wind speed.
+        
+      # We want to keep track of weather wind speed.
       weather_wind_speed:
         friendly_name: "Weather wind speed"
         value_template: "{{ state_attr('weather.smhi_home', 'wind_speed') }}"
-      # We want to keep track of wind bearing.
+        
+      # We want to keep track of weather wind bearing.
       weather_wind_bearing:
-        friendly_name: "Weather wind speed"
+        friendly_name: "Weather wind bearing"
         value_template: "{{ state_attr('weather.smhi_home', 'wind_bearing') }}"
-      # We want to keep track of pressure.
-      weather_wind_pressure:
+        
+      # We want to keep track of weather wind gust speed.
+      weather_wind_gust_speed:
+        friendly_name: "Weather wind gust speed"
+        value_template: "{{ state_attr('weather.smhi_home', 'wind_gust_speed') }}"
+        
+      # We want to keep track of weather pressure.
+      weather_pressure:
         friendly_name: "Weather pressure"
         value_template: "{{ state_attr('weather.smhi_home', 'pressure') }}"
+        
+      # We want to keep track of weather visibility.
+      weather_visibility:
+        friendly_name: "Weather visibility"
+        value_template: "{{ state_attr('weather.smhi_home', 'visibility') }}"
+        
+      # We want to keep track of weather cloudiness.
+      weather_cloudiness:
+        friendly_name: "Weather cloudiness"
+        value_template: "{{ state_attr('weather.smhi_home', 'cloudiness') }}"
+        
+      # We want to keep track of weather thunder probability.
+      weather_thunder_probability:
+        friendly_name: "Weather thunder probability"
+        value_template: "{{ state_attr('weather.smhi_home', 'thunder_probability') }}"
 ```
 
 ## Integration - Unifi
