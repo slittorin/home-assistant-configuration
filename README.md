@@ -31,6 +31,7 @@ We want to keep track of database sizes and number of objects managed by Home As
 
 1. Through the `File Editor` add-on, edit the file `/config/sensors.yaml` and add:
      ```
+     # We keep track of the MariaDB database size.
      - platform: sql
        db_url: !secret recorder_db_url
        # Scan every 10:t minute.
