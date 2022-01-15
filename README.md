@@ -17,6 +17,8 @@ For all changes to Home Assistant configuration files, you usually need to resta
    - The output should state 'Configuration valid'. If not, change the recorder config above.
    - On the same page press `Restart` under `Server management`.
 - Any warnings or errors can be found in the file `/config/home-assistant.log`.
+- Naming convention:
+  - Entity ID: type, area, location, device, lower-case with `_` as delimiter.
 
 ## Governing principles
 
@@ -50,7 +52,7 @@ To be able to gather information on the size and state of MariaDB database we ut
        # Scan every 10:t minute.
        scan_interval: 600
        queries:
-         - name: HA DB size
+         - name: home_assistant_db_size
            query: 'SELECT table_schema "database", Round(Sum(data_length + index_length) / 1024 / 1024, 1) "value" FROM information_schema.tables WHERE table_schema="homeassistant" GROUP BY table_schema;'
            column: "value"
            unit_of_measurement: MB
