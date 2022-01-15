@@ -30,17 +30,17 @@ For all changes to Home Assistant configuration files, you usually need to resta
 We want to keep track of database sizes and number of objects managed by Home Assistant.
 
 1. Through the `File Editor` add-on, edit the file `/config/sensors.yaml` and add:
-     ```
-       - platform: sql
-         db_url: !secret recorder_db_url
-         scan_interval: 600 # Scan every 10:t minute.
-         queries:
-           # We keep track of the MariaDB database size.
-           - name: home_assistant_db_size
-             query: 'SELECT table_schema "database", Round(Sum(data_length + index_length) / 1024 / 1024, 1) "value" FROM information_schema.tables WHERE table_schema="homeassistant" GROUP BY table_schema;'
-             column: "value"
-             unit_of_measurement: MB
-     ```
+```
+  - platform: sql
+    db_url: !secret recorder_db_url
+    scan_interval: 600 # Scan every 10:t minute.
+    queries:
+      # We keep track of the MariaDB database size.
+      - name: home_assistant_db_size
+        query: 'SELECT table_schema "database", Round(Sum(data_length + index_length) / 1024 / 1024, 1) "value" FROM information_schema.tables WHERE table_schema="homeassistant" GROUP BY table_schema;'
+        column: "value"
+        unit_of_measurement: MB
+```
 
 ## Integration - Weather
 
@@ -53,18 +53,34 @@ We want to have a more accurate weather integration for Sweden than the built in
    - If we this at initial setup of the HA, we do not loose any valid data.
    - If you want to keep historical data, do not delete this integration.
 5. Through the `File Editor` add-on, edit the file `/config/sensors.yaml` and add after `  - platform: template` (if there is not template-row, add this row (mind the spaces)):
-     ```
-       - platform: template
-         sensors:
-         # We want to keep track of the angle of the sun.
-       - platform: template
-         sensors:
-           # We want to keep track of the angle of the sun.
-           weather_solar_elevation:
-             friendly_name: "Sun elevation"
-             unit_of_measurement: 'degrees'
-             value_template: "{{ state_attr('sun.sun', 'elevation') }}"
-     ```
+```
+    sensors:
+      # We want to keep track of the angle of the sun.
+      weather_solar_elevation:
+        friendly_name: "Weather sun elevation"
+        unit_of_measurement: 'degrees'
+        value_template: "{{ state_attr('sun.sun', 'elevation') }}"
+      # We want to keep track of temperature.
+      weather_temperature:
+        friendly_name: "Weather temperature"
+        value_template: "{{ state_attr('weather.smhi_home', 'temperature') }}"
+      # We want to keep track of humidity.
+      weather_humidity:
+        friendly_name: "Weather humidity"
+        value_template: "{{ state_attr('weather.smhi_home', 'humidity') }}"
+      # We want to keep track of wind speed.
+      weather_wind_speed:
+        friendly_name: "Weather wind speed"
+        value_template: "{{ state_attr('weather.smhi_home', 'wind_speed') }}"
+      # We want to keep track of wind bearing.
+      weather_wind_bearing:
+        friendly_name: "Weather wind speed"
+        value_template: "{{ state_attr('weather.smhi_home', 'wind_bearing') }}"
+      # We want to keep track of pressure.
+      weather_wind_pressure:
+        friendly_name: "Weather pressure"
+        value_template: "{{ state_attr('weather.smhi_home', 'pressure') }}"
+```
 
 ## Integration - Unifi
 
