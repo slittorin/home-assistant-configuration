@@ -31,12 +31,24 @@ For all changes to Home Assistant configuration files, you usually need to resta
 
 # Integrations
 
-## Generic - Home Assistant
+## Package - Home Assistant system
 
-We want to keep track of database sizes and number of objects managed by Home Assistant.
+We want to keep track of the following for the HA system:
+- Database sizes.
+- Number of objects managed by Home Assistant.
 
-1. Through the `File Editor` add-on, edit the file `/config/sensors.yaml` and add:
+Perform the following:
+
+1. Through the `File Editor` add-on, create the file `/config/packages/ha_system.yaml`
+2. Through the `File Editor` add-on, edit the file `/config/configuration.yaml` and after `  packages:` (mind the spaces):
 ```
+    ha_system: !include packages/ha_system.yaml
+```
+3. Through the `File Editor` add-on, edit the file `/config/packages/ha_system.yaml` and add:
+```
+# This file includes all the items for Home Assistant system.
+
+sensor:
   - platform: sql
     db_url: !secret recorder_db_url
     scan_interval: 600 # Scan every 10:t minute.
@@ -45,12 +57,18 @@ We want to keep track of database sizes and number of objects managed by Home As
       - name: home_assistant_db_size
         query: 'SELECT table_schema "database", Round(Sum(data_length + index_length) / 1024 / 1024, 1) "value" FROM information_schema.tables WHERE table_schema="homeassistant" GROUP BY table_schema;'
         column: "value"
-        unit_of_measurement: MB
+        unit_of_measurement: 'MB'
 ```
 
-## Integration - Weather
+## Package - Weather
 
-We want to have a more accurate weather integration for Sweden than the built in, so we utilize SMHI.
+We want to have a more accurate weather integration for Sweden than the built in, so we utilize SMHI.\
+
+We want to keep track of the following for the HA system:
+- Sensor data from the integration.
+- Sun states, including different time/elevation over the horizon to be able to utilize that for trending for the solar panels (SMA).
+
+Perform the following:
 
 1. Add and enable integration `SMHI`.
    - Utilize the GPS coordinates set in setup/onboarding stage.
@@ -58,6 +76,17 @@ We want to have a more accurate weather integration for Sweden than the built in
 4. Delete thereafter the default integration.
    - If we this at initial setup of the HA, we do not loose any valid data.
    - If you want to keep historical data, do not delete this integration.
+5. Through the `File Editor` add-on, create the file `/config/packages/weather.yaml`
+6. Through the `File Editor` add-on, edit the file `/config/configuration.yaml` and after `  packages:` (mind the spaces):
+```
+    ha_system: !include packages/weather.yaml
+```
+7. Through the `File Editor` add-on, edit the file `/config/packages/weather.yaml` and add:
+```
+```
+
+
+
 5. Through the `File Editor` add-on, edit the file `/config/sensors.yaml` and add after `  - platform: template` (if there is not template-row, add this row (mind the spaces)):
 ```
     sensors:
