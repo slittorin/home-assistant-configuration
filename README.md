@@ -29,7 +29,7 @@ For all changes to Home Assistant configuration files, you usually need to resta
 
 - Setup HA with [Home Assistance setup](https://github.com/slittorin/home-assistant-setup).
 
-# Integrations
+# Packages and integrations
 
 ## Package - Home Assistant system
 
