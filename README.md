@@ -46,7 +46,7 @@ Perform the following:
 ```
 3. Through the `File Editor` add-on, edit the file `/config/packages/ha_system.yaml` and add:
 ```
-# This file includes all the items for Home Assistant system.
+# This file includes all the items for the Home Assistant system.
 
 sensor:
   - platform: sql
@@ -83,12 +83,10 @@ Perform the following:
 ```
 7. Through the `File Editor` add-on, edit the file `/config/packages/weather.yaml` and add:
 ```
-```
+# This file includes all the items for the Weather integration.
 
-
-
-5. Through the `File Editor` add-on, edit the file `/config/sensors.yaml` and add after `  - platform: template` (if there is not template-row, add this row (mind the spaces)):
-```
+sensor:
+  - platform: template
     sensors:
       # We want to keep track of the elevation of the sun.
       weather_sun_elevation:
@@ -122,7 +120,7 @@ Perform the following:
       weather_wind_speed_ms:
         friendly_name: "Weather wind speed"
         unit_of_measurement: 'm/s' # SMHI integration gives km/h, so we convert.
-        value_template: "{{ state_attr('weather.smhi_home', 'wind_speed') / 3.6 }}"
+        value_template: "{{ (state_attr('weather.smhi_home', 'wind_speed') / 3.6) | round(1) }}"
         
       # We want to keep track of weather wind bearing.
       weather_wind_bearing:
@@ -138,7 +136,7 @@ Perform the following:
       weather_wind_gust_speed_ms:
         friendly_name: "Weather wind gust speed"
         unit_of_measurement: 'm/s' # SMHI integration gives km/h, so we convert.
-        value_template: "{{ state_attr('weather.smhi_home', 'wind_gust_speed') / 3.6 }}"
+        value_template: "{{ (state_attr('weather.smhi_home', 'wind_gust_speed') / 3.6) | round(1) }}"
         
       # We want to keep track of weather pressure.
       weather_pressure:
