@@ -22,6 +22,8 @@ For all changes to Home Assistant configuration files, you usually need to resta
     - Utilize [Style 1](https://www.home-assistant.io/docs/configuration/devices#style-2-list-each-device-separately) convention.
   - Naming convention:
     - Entity ID: type, area, location, device, lower-case with `_` as delimiter.
+    - If there are similar entities add `_unitofmeasurement`, such as `weather_sun_snapshot_elevation_below_0_degrees_seconds`.
+    - When testing, add `test_` before the entity id.
   - Verify and set unit of measurement for all entities/sensors.
     - Standard units is found [here](https://github.com/home-assistant/core/blob/dev/homeassistant/const.py).
 
