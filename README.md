@@ -4,10 +4,10 @@
 
 - [Generic information](https://github.com/slittorin/home-assistant-configuration#generic-information)
 - [Governing principles](https://github.com/slittorin/home-assistant-configuration#governing-principles)
-- [Integrations](https://github.com/slittorin/home-assistant-configuration#integrations)
-  - [Generic - Home Assistant](https://github.com/slittorin/home-assistant-configuration/blob/main/README.md#generic---home-assistant)
-  - [Integration - Weather](https://github.com/slittorin/home-assistant-configuration#integration---weather)
-  - [Integration - Unifi](https://github.com/slittorin/home-assistant-configuration#integration---unifi)
+- [Packages and Integrations](https://github.com/slittorin/home-assistant-configuration#packages-and-integrations)
+  - [Packages - Home Assistant](https://github.com/slittorin/home-assistant-configuration#package---home-assistant-system)
+  - [Package - Weather](https://github.com/slittorin/home-assistant-configuration#package---weather)
+  - [Package - Unifi](https://github.com/slittorin/home-assistant-configuration#integration---unifi)
 
 ## Generic information
 
@@ -29,7 +29,7 @@ For all changes to Home Assistant configuration files, you usually need to resta
 
 - Setup HA with [Home Assistance setup](https://github.com/slittorin/home-assistant-setup).
 
-# Packages and integrations
+# Packages and Integrations
 
 ## Package - Home Assistant system
 
@@ -165,7 +165,7 @@ Perform the following:
         value_template: "{{ state_attr('weather.smhi_home', 'thunder_probability') }}"
 ```
 
-## Integration - Unifi
+## Package - Unifi
 
 We want to have gather information from our Unifi network.
 
