@@ -18,7 +18,7 @@ For all changes to Home Assistant configuration files, you usually need to resta
 - Any warnings or errors can be found in the file `/config/home-assistant.log`.
 - Configuration-files/yaml:
   - Follow the [Style guide](https://developers.home-assistant.io/docs/documenting/yaml-style-guide/).
-  - Utilize [style 1](https://www.home-assistant.io/docs/configuration/devices#style-2-list-each-device-separately) convention.
+  - Utilize [Style 1](https://www.home-assistant.io/docs/configuration/devices#style-2-list-each-device-separately) convention.
   - Utilize [Packages](https://www.home-assistant.io/docs/configuration/packages/) to bundle together services/entities in packages.
   - Naming convention:
     - Entity ID: type, area, location, device, lower-case with `_` as delimiter.
