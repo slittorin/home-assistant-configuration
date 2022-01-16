@@ -16,10 +16,13 @@ For all changes to Home Assistant configuration files, you usually need to resta
    - The output should state 'Configuration valid'. If not, change the recorder config above.
    - On the same page press `Restart` under `Server management`.
 - Any warnings or errors can be found in the file `/config/home-assistant.log`.
-- Naming convention:
-  - Entity ID: type, area, location, device, lower-case with `_` as delimiter.
-- Verify and set unit of measurement for all entities/sensors.
-  - Standard units is found [here](https://github.com/home-assistant/core/blob/dev/homeassistant/const.py).
+- Configuration-files/yaml:
+  - Follow the [Style guide](https://developers.home-assistant.io/docs/documenting/yaml-style-guide/).
+  - Utilize [style 1](https://www.home-assistant.io/docs/configuration/devices#style-2-list-each-device-separately) convention.
+  - Naming convention:
+    - Entity ID: type, area, location, device, lower-case with `_` as delimiter.
+  - Verify and set unit of measurement for all entities/sensors.
+    - Standard units is found [here](https://github.com/home-assistant/core/blob/dev/homeassistant/const.py).
 
 ## Governing principles
 
