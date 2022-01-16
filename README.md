@@ -7,7 +7,7 @@
 - [Packages and Integrations](https://github.com/slittorin/home-assistant-configuration#packages-and-integrations)
   - [Packages - Home Assistant](https://github.com/slittorin/home-assistant-configuration#package---home-assistant-system)
   - [Package - Weather](https://github.com/slittorin/home-assistant-configuration#package---weather)
-  - [Package - Unifi](https://github.com/slittorin/home-assistant-configuration#integration---unifi)
+  - [Package - Unifi](https://github.com/slittorin/home-assistant-configuration#package---unifi)
 
 ## Generic information
 
