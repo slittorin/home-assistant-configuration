@@ -17,6 +17,7 @@ For all changes to Home Assistant configuration files, you usually need to resta
    - On the same page press `Restart` under `Server management`.
 - Any warnings or errors can be found in the file `/config/home-assistant.log`.
 - Configuration-files/yaml:
+  - Do not create more sensors than needed. Rely on the standard integration entities/attributes.
   - Follow the [Style guide](https://developers.home-assistant.io/docs/documenting/yaml-style-guide/).
   - Utilize [Packages](https://www.home-assistant.io/docs/configuration/packages/) to bundle together services/entities in packages.
     - Utilize [Style 1](https://www.home-assistant.io/docs/configuration/devices#style-2-list-each-device-separately) convention.
