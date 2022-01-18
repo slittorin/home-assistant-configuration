@@ -13,11 +13,19 @@
 
 ## Generic information
 
-For all changes to Home Assistant configuration files, you usually need to restart:
--  Goto `Configuration` -> `Settings` -> `Server Controls` and press `Check Configuration`.
+For changes to Home Assistant configuration files, you usually need to restart:
+1. Goto `Configuration` -> `Settings` -> `Server Controls` and press `Check Configuration`.
    - The output should state 'Configuration valid'. If not, change the recorder config above.
-   - On the same page press `Restart` under `Server management`.
+2. Try not to restart the full Home Manager through `Server Configuration`.
+   - All states are lost, and sensors/data are lost that relates to states.
+3. Restart only necessary part of Home Assistant at `YAML configuration reloading`.
+   - Check logs.
+   - It can take up to 1 minute before updates are made.
+
+Logs:
 - Any warnings or errors can be found in the file `/config/home-assistant.log`.
+
+Styles, naming convention, and unit of measurement:
 - Configuration-files/yaml:
   - Do not create more sensors than needed. Rely on the standard integration entities/attributes.
   - Follow the [Style guide](https://developers.home-assistant.io/docs/documenting/yaml-style-guide/).
