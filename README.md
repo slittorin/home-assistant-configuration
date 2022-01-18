@@ -9,7 +9,7 @@
   - [Package - Weather](https://github.com/slittorin/home-assistant-configuration#package---weather)
   - [Package - Nordpool](https://github.com/slittorin/home-assistant-configuration#package---nordpool)
   - [Package - SMA](https://github.com/slittorin/home-assistant-configuration#package---sma)
-  - [Package - Balboa Spa](https://github.com/slittorin/home-assistant-configuration#package---sma)
+  - [Package - Balboa Spa](https://github.com/slittorin/home-assistant-configuration#package---balboa-spa)
 
 ## Generic information
 
