@@ -208,6 +208,8 @@ sensor:
     precision: 3
     price_type: kWh
 ```
+6. To get the custom component running restart the Home Assistant server under `Server management`.
+   - Verify any warnings or errors in the log-file.
 
 ## Package - SMA
 
