@@ -35,6 +35,7 @@ Styles, naming convention, and unit of measurement:
     - Entity ID: type, area, location, device, lower-case with `_` as delimiter.
     - If there are similar entities add `_unitofmeasurement`, such as `weather_sun_snapshot_elevation_below_0_degrees_seconds`.
     - When testing, add `test_` before the entity id.
+      - However remember that these sensors are not written to history, so for instance history_stats will not work with `test_` entites.
   - Verify and set unit of measurement for all entities/sensors.
     - Standard units is found [here](https://github.com/home-assistant/core/blob/dev/homeassistant/const.py).
 
