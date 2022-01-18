@@ -13,7 +13,7 @@
 
 ## Generic information
 
-For changes to Home Assistant configuration files:
+### For changes to Home Assistant configuration files:
 1. Goto `Configuration` -> `Settings` -> `Server Controls` and press `Check Configuration`.
    - The output should state 'Configuration valid'. If not, change the recorder config above.
 2. Try not to restart the full Home Manager through `Server Configuration`.
@@ -22,10 +22,10 @@ For changes to Home Assistant configuration files:
    - Check logs.
    - It can take up to 1 minute before updates are made.
 
-Logs:
+### Logs:
 - Any warnings or errors can be found in the file `/config/home-assistant.log`.
 
-Styles, naming convention, and unit of measurement:
+### Styles, naming convention, and unit of measurement:
 - Configuration-files/yaml:
   - Do not create more sensors than needed. Rely on the standard integration entities/attributes.
   - Follow the [Style guide](https://developers.home-assistant.io/docs/documenting/yaml-style-guide/).
