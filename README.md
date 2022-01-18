@@ -245,21 +245,21 @@ We want to gather information about our Jacuzzi that has a Balboa Spa WiFi Modul
 1. Add integration `Balboa Spa client` with the following parameters:
    - `Host`: IP of the SMA Inverter (that we have set fixed IP on).
    - Once connected, set `Area` to the area where the SMA Inverter is located.
-2. Through the `File Editor` add-on, create the file `/config/packagesbalboa_spa.yaml`
+2. Through the `File Editor` add-on, create the file `/config/packages/balboa_spa.yaml`
 3. Through the `File Editor` add-on, edit the file `/config/configuration.yaml` and after `  packages:` (mind the spaces):
 ```
     balboa_spa: !include packages/balboa_spa.yaml
 ```
-4. Through the `File Editor` add-on, edit the file `/config/packages/tariff_electrical.yaml` and add:
+4. Through the `File Editor` add-on, edit the file `/config/packages/balboa_spa.yaml` and add:
 ```
 # This file includes all the items for the Balboa Spa Client add-on.
 
 sensor:
-  # We want to track how much the Jacuzzi is heating (based on poll-interval of course).
+  # We want to keep track of the time that the heater has been running (depends of course on polling).
   - platform: history_stats
     name: spa_heater_running_time
     entity_id: climate.nbp6013h_climate
-    state: "heating"
+    state: "heat"
     type: time
     start: "{{ now().replace(hour=0, minute=0, second=0) }}"
     end: "{{ now() }}"
