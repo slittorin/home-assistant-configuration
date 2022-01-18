@@ -179,7 +179,7 @@ sensor:
 We want to have gather the current cost for electricity in my region.
 
 1. Download the custom component:
-   - Go to [HA Customer component - Nordpool](https://github.com/slittorin/home-assistant-configuration#package---nordpool`.
+   - Go to [HA Customer component - Nordpool](https://github.com/custom-components/nordpool).
    - Choose `Code` -> `Download as ZIP` to download the code.
    - Through the `File Editor` add-on, under `/config/custom_components` create the following directories:
      - `nordpool`.
