@@ -7,6 +7,7 @@
 - [Packages and Integrations](https://github.com/slittorin/home-assistant-configuration#packages-and-integrations)
   - [Package - Home Assistant](https://github.com/slittorin/home-assistant-configuration#package---home-assistant-system)
   - [Package - Weather](https://github.com/slittorin/home-assistant-configuration#package---weather)
+  - [Package - Nordpool](https://github.com/slittorin/home-assistant-configuration#package---nordpool)
   - [Package - SMA](https://github.com/slittorin/home-assistant-configuration#package---sma)
 
 ## Generic information
@@ -168,8 +169,14 @@ sensor:
 
 ## Package - Nordpool
 
-We want to have gather information from our SMA Solar inverter and Home Manager 2.0.
+We want to have gather the current cost for electricity in my region.
 
+1. Go to [HA Customer component - Nordpool](https://github.com/slittorin/home-assistant-configuration#package---nordpool`.
+2. Choose `Code` -> `Download as ZIP`.
+3. Through the `File Editor` add-on, edit create the directory `nordpool` under `/config/custom_components`.
+4. Through the `File Editor` add-on, upload the zip-file to the `nordpool` directory.
+5. Logon with ssh to the Home Assistant server (user is  `root`):
+   - In directory `/config/custom_components/nordpool` run the command `unzip nordpool-master.zip`.
 
 ## Package - SMA
 
