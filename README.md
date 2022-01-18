@@ -7,7 +7,7 @@
 - [Packages and Integrations](https://github.com/slittorin/home-assistant-configuration#packages-and-integrations)
   - [Package - Home Assistant](https://github.com/slittorin/home-assistant-configuration#package---home-assistant-system)
   - [Package - Weather](https://github.com/slittorin/home-assistant-configuration#package---weather)
-  - [Package - Unifi](https://github.com/slittorin/home-assistant-configuration#package---unifi)
+  - [Package - SMA](https://github.com/slittorin/home-assistant-configuration#package---sma)
 
 ## Generic information
 
@@ -166,11 +166,32 @@ sensor:
         value_template: "{{ state_attr('weather.smhi_home', 'thunder_probability') }}"
 ```
 
-## Package - Unifi
+## Package - Nordpool
 
-We want to have gather information from our Unifi network.
+We want to have gather information from our SMA Solar inverter and Home Manager 2.0.
 
-1. Add a read-only local user to the Unify controller.
-2. Add the integration `Unifi`.
-   - Host is the IP of the Cloud Key.
-   - User and password for the read-only local user created above.
+
+## Package - SMA
+
+We want to have gather information from our SMA Solar inverter and Home Manager 2.0.
+
+1. Add integration 'SMA Solar' with the following parameters:
+   - `Host`: IP of the SMA Inverter (that we have set fixed IP on).
+   - Check `Uses an SSL certificate`.
+   - Remove check for `Verify SSL certificate`.
+   - `Group`: Set to `user`.
+   - `Password`: Set to the user-password for the SMA Inverter.
+   - Once connected, set `Area` to the area where the SMA Inverter is located.
+2. Go to 'Energy':
+   - Choose `Add consumption` (Configure grid consumption):
+     - Choose `metering_total_absorbed`.
+     - Since I have a static cost, I add this cost with `Use as static price`.
+   - Choose `Add return` (Configure grid production):
+     - Choose `metering_total_yield`.
+   - Press `Next`.
+   - Choose `Add solar production` (Configure solar panels):
+     - Choose `total_yield`.
+     - Choose `Don't forecast production`, as we at this point do not want any forecasting.
+   - Press `Next`.
+   - Since we do not have a battery system, Press `Next`.
+   - Since we do not have a gas source, Press `Next`.
