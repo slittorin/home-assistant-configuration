@@ -228,6 +228,7 @@ We want to have gather information from our SMA Solar inverter and Home Manager 
      - Since I have a static cost, I add this cost with `Use as static price`.
    - Choose `Add return` (Configure grid production):
      - Choose `metering_total_yield`.
+     - As any grid production goes towards Nordpool hourly-rate we add `sensor.nordpool_kwh_se3_eur_3_10_025` with  `Use an entity with current rate`.
    - Press `Next`.
    - Choose `Add solar production` (Configure solar panels):
      - Choose `total_yield`.
