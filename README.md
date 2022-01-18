@@ -178,12 +178,25 @@ sensor:
 
 We want to have gather the current cost for electricity in my region.
 
-1. Go to [HA Customer component - Nordpool](https://github.com/slittorin/home-assistant-configuration#package---nordpool`.
-2. Choose `Code` -> `Download as ZIP` to download the code.
-3. Through the `File Editor` add-on, edit create the directory `nordpool` under `/config/custom_components`.
-4. Through the `File Editor` add-on, upload the zip-file to the `nordpool` directory.
-5. Logon with ssh to the Home Assistant server (user is  `root`):
-   - In directory `/config/custom_components/nordpool` run the command `unzip nordpool-master.zip`.
+1. Download the custom component:
+   - Go to [HA Customer component - Nordpool](https://github.com/slittorin/home-assistant-configuration#package---nordpool`.
+   - Choose `Code` -> `Download as ZIP` to download the code.
+   - Through the `File Editor` add-on, under `/config/custom_components` create the following directories:
+     - `nordpool`.
+     - `nordpool/download`.
+   - Through the `File Editor` add-on, upload the zip-file to the `nordpool/download` directory.
+   - Logon with ssh to the Home Assistant server (user is  `root`):
+     - In directory `/config/custom_components/nordpool/download` run the command `unzip nordpool-master.zip`.
+     - Copy the files in directory `/config/custom_components/nordpool/download/nordpool-master/custom_components/nordpool` to `/config/custom_components/nordpool`.
+8. Restart the Home Assistant server under `Server management`.
+8. Through the `File Editor` add-on, create the file `/config/packages/tariff_electrical.yaml`
+9. Through the `File Editor` add-on, edit the file `/config/configuration.yaml` and after `  packages:` (mind the spaces):
+```
+    tariff_electrical: !include packages/tariff_electrical.yaml
+```
+7. Through the `File Editor` add-on, edit the file `/config/packages/tariff_electrical.yaml` and add:
+```
+```
 
 ## Package - SMA
 
