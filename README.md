@@ -255,9 +255,10 @@ We want to gather information about our Jacuzzi that has a Balboa Spa WiFi Modul
 # This file includes all the items for the Balboa Spa Client add-on.
 
 sensor:
+  # We want to track how much the Jacuzzi is heating (based on poll-interval of course).
   - platform: history_stats
     name: spa_heater_running_time
-    entity_id: climate.nbp6013h_climate.hvac_action
+    entity_id: climate.nbp6013h_climate
     state: "heating"
     type: time
     start: "{{ now().replace(hour=0, minute=0, second=0) }}"
