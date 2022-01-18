@@ -13,7 +13,7 @@
 
 ## Generic information
 
-For changes to Home Assistant configuration files, you usually need to restart:
+For changes to Home Assistant configuration files:
 1. Goto `Configuration` -> `Settings` -> `Server Controls` and press `Check Configuration`.
    - The output should state 'Configuration valid'. If not, change the recorder config above.
 2. Try not to restart the full Home Manager through `Server Configuration`.
