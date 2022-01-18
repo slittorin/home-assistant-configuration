@@ -188,14 +188,25 @@ We want to have gather the current cost for electricity in my region.
    - Logon with ssh to the Home Assistant server (user is  `root`):
      - In directory `/config/custom_components/nordpool/download` run the command `unzip nordpool-master.zip`.
      - Copy the files in directory `/config/custom_components/nordpool/download/nordpool-master/custom_components/nordpool` to `/config/custom_components/nordpool`.
-8. Restart the Home Assistant server under `Server management`.
-8. Through the `File Editor` add-on, create the file `/config/packages/tariff_electrical.yaml`
-9. Through the `File Editor` add-on, edit the file `/config/configuration.yaml` and after `  packages:` (mind the spaces):
+2. Restart the Home Assistant server under `Server management`.
+   - This may take a while as the custom component is installed.
+3. Through the `File Editor` add-on, create the file `/config/packages/tariff_electrical.yaml`
+4. Through the `File Editor` add-on, edit the file `/config/configuration.yaml` and after `  packages:` (mind the spaces):
 ```
     tariff_electrical: !include packages/tariff_electrical.yaml
 ```
-7. Through the `File Editor` add-on, edit the file `/config/packages/tariff_electrical.yaml` and add:
+5. Through the `File Editor` add-on, edit the file `/config/packages/tariff_electrical.yaml` and add:
 ```
+# This file includes all the items for the electrical tariffs.
+
+sensor:
+  # We get all the data from Nordpool, for my region and currency,
+  - platform: nordpool
+    region: "SE3"
+    VAT: True
+    currency: "EUR"
+    precision: 3
+    price_type: kWh
 ```
 
 ## Package - SMA
