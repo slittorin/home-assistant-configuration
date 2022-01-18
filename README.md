@@ -5,7 +5,7 @@
 - [Generic information](https://github.com/slittorin/home-assistant-configuration#generic-information)
 - [Governing principles](https://github.com/slittorin/home-assistant-configuration#governing-principles)
 - [Packages and Integrations](https://github.com/slittorin/home-assistant-configuration#packages-and-integrations)
-  - [Packages - Home Assistant](https://github.com/slittorin/home-assistant-configuration#package---home-assistant-system)
+  - [Package - Home Assistant](https://github.com/slittorin/home-assistant-configuration#package---home-assistant-system)
   - [Package - Weather](https://github.com/slittorin/home-assistant-configuration#package---weather)
   - [Package - Unifi](https://github.com/slittorin/home-assistant-configuration#package---unifi)
 
