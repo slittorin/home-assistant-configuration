@@ -9,6 +9,7 @@
   - [Package - Weather](https://github.com/slittorin/home-assistant-configuration#package---weather)
   - [Package - Nordpool](https://github.com/slittorin/home-assistant-configuration#package---nordpool)
   - [Package - SMA](https://github.com/slittorin/home-assistant-configuration#package---sma)
+  - [Package - Balboa Spa](https://github.com/slittorin/home-assistant-configuration#package---sma)
 
 ## Generic information
 
@@ -213,7 +214,7 @@ sensor:
 
 ## Package - SMA
 
-We want to have gather information from our SMA Solar inverter and Home Manager 2.0.
+We want to have gather information from our SMA Solar inverter (that also gets information from Home Manager 2.0), to gather information about load, loads and yields.
 
 1. Add integration 'SMA Solar' with the following parameters:
    - `Host`: IP of the SMA Inverter (that we have set fixed IP on).
@@ -236,3 +237,7 @@ We want to have gather information from our SMA Solar inverter and Home Manager 
    - Press `Next`.
    - Since we do not have a battery system, Press `Next`.
    - Since we do not have a gas source, Press `Next`.
+
+## Package - Balboa Spa
+
+We want to have gather the current cost for electricity in my region.
