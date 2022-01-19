@@ -33,6 +33,11 @@
     - Utilize [Style 1](https://www.home-assistant.io/docs/configuration/devices#style-2-list-each-device-separately) convention.
   - Naming convention:
     - Entity ID: type, area, location, device, lower-case with `_` as delimiter.
+      - For example:
+        - balboa_spa_heater_on
+        - balboa_spa_heater_running_time
+        - balboa_spa_heater_consumption
+        - balboa_spa_heater_consumption_daily
     - If there are similar entities add `_unitofmeasurement`, such as `weather_sun_snapshot_elevation_below_0_degrees_seconds`.
     - When testing, add `test_` before the entity id.
       - However remember that these sensors are not written to history, so for instance history_stats will not work with `test_` entites.
