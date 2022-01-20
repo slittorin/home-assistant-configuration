@@ -29,7 +29,7 @@ Secondarily I would like to be able to control and perform automation activities
    - Any warnings or errors can be found in the file `/config/home-assistant.log`.
    - It can take up to 1-2 minutes before updates are made.
 
-#### Styles, naming convention, and unit of measurement:
+#### Styles, naming convention, device and state class, and unit of measurement:
 - Configuration-files/yaml:
   - Do not create more sensors than needed. Rely on the standard integration entities/attributes.
     - Where required, create new sensors if attributes cannot be utilized by templates, triggers or other.
