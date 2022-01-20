@@ -47,8 +47,8 @@ Secondarily I would like to be able to control and perform automation activities
     - When testing, add `test_` before the entity id.
       - However remember that these sensors are not written to history, as we have excluded these sensors in the configuration file, so for instance history_stats will not work with `test_` entites.
   - To allow Home Assistant to correctly identify and utilize sensors/data, always utilize:
-    - Utilize `device_class` when defining new sensor/template sensors. Valid types can be found [here](https://www.home-assistant.io/docs/configuration/customizing-devices/#device-class).
-    - Utilize `state_class` when defining new sensor/template sensors. Valid types can be found [here](https://developers.home-assistant.io/docs/core/entity/sensor/#available-state-classes).
+    - When utilizing customized entities, utilize `device_class`. Valid types can be found [here](https://www.home-assistant.io/docs/configuration/customizing-devices/#device-class).
+    - Utilize `state_class` when defining sensor/template sensors. Valid types can be found [here](https://developers.home-assistant.io/docs/core/entity/sensor/#available-state-classes).
     - Utilize `unit of measurement` for all entities/sensors. Standard units is found [here](https://github.com/home-assistant/core/blob/dev/homeassistant/const.py).
     - For power/consumption related sensors one may also look to add integration [Powercalc](https://github.com/bramstroker/homeassistant-powercalc), specifically for binary sensors.
 
