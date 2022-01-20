@@ -33,7 +33,8 @@ Secondarily I would like to be able to control and perform automation activities
 - Configuration-files/yaml:
   - Do not create more sensors than needed. Rely on the standard integration entities/attributes.
     - Where required, create new sensors if attributes cannot be utilized by templates, triggers or other.
-  - Follow the [Style guide](https://developers.home-assistant.io/docs/documenting/yaml-style-guide/).
+  - Use [Modern configuration format](https://www.home-assistant.io/integrations/template/#configuration-variables).
+  - ??? Follow the [Style guide](https://developers.home-assistant.io/docs/documenting/yaml-style-guide/).
   - Utilize [Packages](https://www.home-assistant.io/docs/configuration/packages/) to bundle together services/entities in packages.
   - Utilize primarily [Style 1](https://www.home-assistant.io/docs/configuration/devices#style-2-list-each-device-separately) convention.
   - Naming convention for Sensor/Entity ID (and where required name) shall follow the naming standard:
