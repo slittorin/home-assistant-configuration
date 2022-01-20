@@ -34,13 +34,13 @@ Secondarily I would like to be able to control and perform automation activities
   - Do not create more sensors than needed. Rely on the standard integration entities/attributes.
     - Where required, create new sensors if attributes cannot be utilized by templates, triggers or other.
   - Use [Modern configuration format](https://www.home-assistant.io/integrations/template/#configuration-variables).
-  - ??? Follow the [Style guide](https://developers.home-assistant.io/docs/documenting/yaml-style-guide/).
+  - Follow the [Style guide](https://developers.home-assistant.io/docs/documenting/yaml-style-guide/).
   - Utilize [Packages](https://www.home-assistant.io/docs/configuration/packages/) to bundle together services/entities in packages.
-  - Utilize primarily [Style 1](https://www.home-assistant.io/docs/configuration/devices#style-2-list-each-device-separately) convention.
-  - Naming convention for Sensor/Entity ID (and where required name) shall follow the naming standard:
-    - Lower-case with `_` as delimiter.
-    - `Device/Type`\_`area/attribute/`\_`(if required location/zone)`\_`state/measure`\_`device`\_`unit of measurement`.
-    - For example:
+  - ????Utilize primarily [Style 1](https://www.home-assistant.io/docs/configuration/devices#style-2-list-each-device-separately) convention.
+  - Make sure that the new format to manage functions is utilized from [2021.10.x](https://community.home-assistant.io/t/updating-templates-with-the-new-default-values-in-2021-10-x/346198).
+  - Naming convention for `name:` of Sensor/Entity ID (and where required name) shall follow the naming standard:
+    - `Device/Type` `area/attribute` `(if required location/zone)` `state/measure` `device` `unit of measurement`.
+    - This will render unique id
       - balboa_spa_heater_on
       - balboa_spa_heater_running_time
       - balboa_spa_heater_consumption
