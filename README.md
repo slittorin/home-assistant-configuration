@@ -97,6 +97,7 @@ template:
       # Get the number of domains, and entities within each domain.
       # https://community.home-assistant.io/t/where-can-i-find-a-list-of-domains/62654/20
       - name: test_home_assistant_domains_in_use
+        state_class: measurement
         state: >
           {%- for d in states | groupby('domain') %}
           {% if loop.first %}{{loop.length}} Domains:
