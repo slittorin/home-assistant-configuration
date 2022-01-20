@@ -2,6 +2,7 @@
 
 ## Table of content
 
+- [Goal](https://github.com/slittorin/home-assistant-configuration#goal)
 - [Generic information](https://github.com/slittorin/home-assistant-configuration#generic-information)
 - [Governing principles](https://github.com/slittorin/home-assistant-configuration#governing-principles)
 - [Packages and Integrations](https://github.com/slittorin/home-assistant-configuration#packages-and-integrations)
@@ -11,39 +12,44 @@
   - [Package - SMA](https://github.com/slittorin/home-assistant-configuration#package---sma)
   - [Package - Balboa Spa](https://github.com/slittorin/home-assistant-configuration#package---balboa-spa)
 
+## Goal
+
+The goal of my Home Assistant installation is to primarily measure and get control of the major cost for my house, electricity.
+Secondarily I would like to be able to control and perform automation activities.
+
 ## Generic information
 
 #### For changes to Home Assistant configuration files:
 1. Goto `Configuration` -> `Settings` -> `Server Controls` and press `Check Configuration`.
-   - The output should state 'Configuration valid'. If not, change the recorder config above.
+   - The output should state 'Configuration valid'. If not, isolate the error.
 2. Try not to restart the full Home Manager through `Server Configuration`.
    - All states are lost, and sensors/data are lost that relates to states.
 3. Restart only necessary part of Home Assistant at `YAML configuration reloading`.
-   - Check logs.
-   - It can take up to 1 minute before updates are made.
-
-#### Logs:
-- Any warnings or errors can be found in the file `/config/home-assistant.log`.
+4. Check logs to verify if there are warnings or errors.
+   - Any warnings or errors can be found in the file `/config/home-assistant.log`.
+   - It can take up to 1-2 minutes before updates are made.
 
 #### Styles, naming convention, and unit of measurement:
 - Configuration-files/yaml:
   - Do not create more sensors than needed. Rely on the standard integration entities/attributes.
+    - Where required, create new sensors if attributes cannot be utilized by templates, triggers or other.
   - Follow the [Style guide](https://developers.home-assistant.io/docs/documenting/yaml-style-guide/).
   - Utilize [Packages](https://www.home-assistant.io/docs/configuration/packages/) to bundle together services/entities in packages.
-    - Utilize [Style 1](https://www.home-assistant.io/docs/configuration/devices#style-2-list-each-device-separately) convention.
-  - Naming convention:
-    - Entity ID: type, area, location, device, lower-case with `_` as delimiter.
-      - For example:
-        - balboa_spa_heater_on
-        - balboa_spa_heater_running_time
-        - balboa_spa_heater_consumption
-        - balboa_spa_heater_consumption_daily
-    - If there are similar entities add `_unitofmeasurement`, such as `weather_sun_snapshot_elevation_below_0_degrees_seconds`.
+  - Utilize primarily [Style 1](https://www.home-assistant.io/docs/configuration/devices#style-2-list-each-device-separately) convention.
+  - Naming convention for Sensor/Entity ID (and where required name) shall follow the naming standard:
+    - Lower-case with `_` as delimiter.
+    - `Device/Type`´\_`area/attribute/`\_`(if required location/zone)`\_`state/measure`\_`device`\_`unit of measurement`.
+    - For example:
+      - balboa_spa_heater_on
+      - balboa_spa_heater_running_time
+      - balboa_spa_heater_consumption
+      - balboa_spa_heater_consumption_daily
     - When testing, add `test_` before the entity id.
-      - However remember that these sensors are not written to history, so for instance history_stats will not work with `test_` entites.
-        - This as we have excluded these sensors in the configuration file.
-  - Verify and set unit of measurement for all entities/sensors.
-    - Standard units is found [here](https://github.com/home-assistant/core/blob/dev/homeassistant/const.py).
+      - However remember that these sensors are not written to history, as we have excluded these sensors in the configuration file, so for instance history_stats will not work with `test_` entites.
+  - To allow Home Assistant to correctly identify valid sensors, always utilize:
+    - Utilize `device_class` when defining new sensor/template sensors. Valid types can be found [here](https://www.home-assistant.io/docs/configuration/customizing-devices/#device-class).
+    - Utilize `state_class` when defining new sensor/template sensors. Valid types can be found [here](https://developers.home-assistant.io/docs/core/entity/sensor/#available-state-classes).
+    - utilize unit of measurement for all entities/sensors. Standard units is found [here](https://github.com/home-assistant/core/blob/dev/homeassistant/const.py).
 
 #### Governing principles
 
