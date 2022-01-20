@@ -38,7 +38,7 @@ Secondarily I would like to be able to control and perform automation activities
   - Utilize primarily [Style 1](https://www.home-assistant.io/docs/configuration/devices#style-2-list-each-device-separately) convention.
   - Naming convention for Sensor/Entity ID (and where required name) shall follow the naming standard:
     - Lower-case with `_` as delimiter.
-    - `Device/Type`´\_`area/attribute/`\_`(if required location/zone)`\_`state/measure`\_`device`\_`unit of measurement`.
+    - `Device/Type`\_`area/attribute/`\_`(if required location/zone)`\_`state/measure`\_`device`\_`unit of measurement`.
     - For example:
       - balboa_spa_heater_on
       - balboa_spa_heater_running_time
@@ -49,7 +49,7 @@ Secondarily I would like to be able to control and perform automation activities
   - To allow Home Assistant to correctly identify valid sensors, always utilize:
     - Utilize `device_class` when defining new sensor/template sensors. Valid types can be found [here](https://www.home-assistant.io/docs/configuration/customizing-devices/#device-class).
     - Utilize `state_class` when defining new sensor/template sensors. Valid types can be found [here](https://developers.home-assistant.io/docs/core/entity/sensor/#available-state-classes).
-    - utilize unit of measurement for all entities/sensors. Standard units is found [here](https://github.com/home-assistant/core/blob/dev/homeassistant/const.py).
+    - Utilize `unit of measurement` for all entities/sensors. Standard units is found [here](https://github.com/home-assistant/core/blob/dev/homeassistant/const.py).
 
 #### Governing principles
 
