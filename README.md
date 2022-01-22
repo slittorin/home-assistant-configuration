@@ -280,13 +280,68 @@ We want to gather information about our Jacuzzi that has a Balboa Spa WiFi Modul
 # This file includes all the items for the Balboa Spa Client add-on.
 
 sensor:
-  # We want to keep track of the time that the heater has been running (depends of course on polling).
+# This file includes all the items for the Balboa Spa Client add-on.
+
+# The following are the consumptions for Denform Montana:
+# - Heater: 3 kW.
+# - Circulation pump: 0.2 kW + 0.1 kW for the ozone-device (that takes 0.2 kW, but we assume that the ozone-device is only running 50% of the time).
+#
+# Logic:
+# - We utilize history_stat to increase time running over each hour, when binary sensor is true/on.
+# - Based on increase time, we create energy sensor that with state_class 'total_increasing' to allow HA to capture energy correct.
+
+# History stats is kept in the legacy format.
+# We keep the names to 'entity_id' format.
+# ---------------------------------------------------------
+sensor:
+  # We want to keep track of the time that the circulation pump has been running each hour (depends of course on polling).
+  # We can utilize the binary sensor from the Balboa Spa Client integration.
   - platform: history_stats
-    name: spa_heater_running_time
-    entity_id: climate.nbp6013h_climate
-    state: "heat"
+    name: balboa_spa_circulationpump_running_time_daily
+    entity_id: binary_sensor.nbp6013h_circ_pump
+    state: 'on'
     type: time
-    start: "{{ now().replace(hour=0, minute=0, second=0) }}"
+    start: "{{ now().replace(minute=0, second=0) }}"
     end: "{{ now() }}"
+
+   # We want to keep track of the time that the heater has been running each hour (depends of course on polling).
+   # Since we cannot track attribute-state in history_stats, we need to utilize the binary template-sensor created below.
+  - platform: history_stats
+    name: balboa_spa_heater_running_time_daily
+    entity_id: binary_sensor.balboa_spa_heater_on
+    state: 'on'
+    type: time
+    start: "{{ now().replace(minute=0, second=0) }}"
+    end: "{{ now() }}"
+
+# Modern format.
+# Utilize friendly name, and set unique_id.
+# ---------------------------------------------------------
+template:
+  - sensor:
+      # We want to keep track of accumulated (daily) consumption for the circulation pump.
+      - name: Balboa Spa circulationpump consumption
+        unique_id: balboa_spa_circulationpump_consumption
+        unit_of_measurement: 'kWh'
+        device_class: energy
+        state_class: total_increasing
+        state: "{{ float(states('sensor.balboa_spa_circulationpump_running_time_daily'), 0) * 0.3 }}"
+
+  - binary_sensor:
+      # Since we cannot track attribute-state in history_stats, we need to create a binary template-sensor.
+      # Returns true if
+      - name:  Balboa Spa heater on
+        unique_id: balboa_spa_heater_on
+        device_class: heat
+        state: "{{ is_state_attr('climate.nbp6013h_climate', 'hvac_action', 'heating') }}"
+
+  - sensor:
+      # We want to keep track of accumulated (daily) consumption for the heater.
+      - name: Balboa Spa heater consumption
+        unique_id: balboa_spa_heater_consumption
+        unit_of_measurement: 'kWh'
+        device_class: energy
+        state_class: total_increasing
+        state: "{{ float(states('sensor.balboa_spa_heater_running_time_daily'), 0) * 3 }}"
 ```
 
