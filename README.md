@@ -132,72 +132,208 @@ Perform the following:
 ```
 # This file includes all the items for the Weather integration.
 
-# We want to track different elevation of the sun, and time between the elevations.
+# Logic:
+# - For historical purpuse we track:
+#   - The sun over the horizon, time in readable format and in seconds.
+#   - Time over the horizon when it reaches my solar panels (approximatelly of course):
+#     - 4 degrees above the horizon at sunrise.
+#     - 6 degrees above the horizon at sunset.
+
+# Modern format.
+# If required, utilize name, and set unique_id.
 template:
+  # Set a snapshot in seconds and readable format since 00:00 when sun is above 0 degrees.
   - trigger:
       - platform: numeric_state
         entity_id: sun.sun
         attribute: elevation
         above: 0
+      - platform: state
+        entity_id: sun.sun
+        attribute: rising
+        to: true
     sensor:
-      # Set a snapshot in seconds since 00:00 when sun is above 0 degrees.
       - name: test_weather_sun_snapshot_elevation_above_0_degrees_seconds
         unit_of_measurement: 'time'
+        state_class: measurement
         state: "{{ (now().hour * 3600) + (now().minute * 60) + now().second }}"
       - name: test_weather_sun_snapshot_elevation_above_0_degrees_hhmmss
         unit_of_measurement: 'time'
+        state_class: measurement
         state: >
           {{ "%02d"|format(now().hour) }}:{{ "%02d"|format(now().minute) }}:{{ "%02d"|format(now().second) }}
-          
+
+  # Set a snapshot in seconds and readable format since 00:00 when sun is above 4 degrees, for when the sun reaches the solar panels.
+  - trigger:
+      - platform: numeric_state
+        entity_id: sun.sun
+        attribute: elevation
+        above: 4
+      - platform: state
+        entity_id: sun.sun
+        attribute: rising
+        to: true
+    sensor:
+      - name: test_weather_sun_snapshot_elevation_reaches_solarpanels_seconds
+        unit_of_measurement: 'time'
+        state_class: measurement
+        state: "{{ (now().hour * 3600) + (now().minute * 60) + now().second }}"
+      - name: test_weather_sun_snapshot_elevation_reaches_solarpanels_hhmmss
+        unit_of_measurement: 'time'
+        state_class: measurement
+        state: >
+          {{ "%02d"|format(now().hour) }}:{{ "%02d"|format(now().minute) }}:{{ "%02d"|format(now().second) }}
+
+  # Set a snapshot in seconds and readable format since 00:00 when sun is below 0 degrees.
   - trigger:
       - platform: numeric_state
         entity_id: sun.sun
         attribute: elevation
         below: 0
+      - platform: state
+        entity_id: sun.sun
+        attribute: rising
+        to: false
     sensor:
-      # Set a snapshot in seconds since 00:00 when sun is below 0 degrees.
       - name: test_weather_sun_snapshot_elevation_below_0_degrees_seconds
         unit_of_measurement: 'time'
+        state_class: measurement
         state: "{{ (now().hour * 3600) + (now().minute * 60) + now().second }}"
       - name: test_weather_sun_snapshot_elevation_below_0_degrees_hhmmss
         state: >
           {{ "%02d"|format(now().hour) }}:{{ "%02d"|format(now().minute) }}:{{ "%02d"|format(now().second) }}
-      # Time in seconds when sun is above horizon.
+          
+  # Set time in seconds and readable format when sun is over horizon.
+  - trigger:
+      - platform: numeric_state
+        entity_id: sun.sun
+        attribute: elevation
+        below: 0
+      - platform: state
+        entity_id: sun.sun
+        attribute: rising
+        to: false
+    sensor:
       - name: test_weather_sun_time_above_horizon_seconds
         unit_of_measurement: 'time'
-        # We cannot trust that states() gives the value set above on the same trigger, therefore we utilize the same formula.
+        state_class: measurement
         state: >
-          {% set start = states('test_weather_sun_snapshot_elevation_above_0_degrees_seconds') %}
+          {% if (states('sensor.test_weather_sun_snapshot_elevation_above_0_degrees_seconds') == "unknown") %}
+          {%   set start = int(0) %}
+          {% else %}
+          {%   set start = int(states('sensor.test_weather_sun_snapshot_elevation_above_0_degrees_seconds')) %}
+          {% endif %}
           {% set stop = (now().hour * 3600) + (now().minute * 60) + now().second %}
-          {% set time  = stop - start %}
-          {{ time }}
+          {% set time = (stop - start) %}
+          {{ int(time) }}
       - name: test_weather_sun_time_above_horizon_hhmmss
-        # We cannot trust that states() gives the value set above on the same trigger, therefore we utilize the same formula.
+        state_class: measurement
         state: >
-          {% set start = states('test_weather_sun_snapshot_elevation_above_0_degrees_seconds') %}
-          {% set stop = (now().hour * 3600) + (now().minute * 60) + now().second %}
-          {% set time  = stop - start %}
-          {% set hours = (time/3600) | int %}
+          {% if (states('sensor.test_weather_sun_snapshot_elevation_above_0_degrees_seconds') == "unknown") %}
+          {%   set start = int(0) %}
+          {% else %}
+          {%   set start = int(states('sensor.test_weather_sun_snapshot_elevation_above_0_degrees_seconds')) %}
+          {% endif %}
+          {% set stop = int((now().hour * 3600) + (now().minute * 60) + now().second) %}
+          {% set time  = (stop - start) %}
+          {% set hours = int(time/3600) %}
           {% set time = (time - (hours*3600)) %}
-          {% set minutes = (time/60) | int %}
+          {% set minutes = int(time/60) %}
           {% set time = (time - (minutes*60)) %}
-          {% set seconds = time | int %}
+          {% set seconds = time %}
           {{ "%02d"|format(hours) }}:{{ "%02d"|format(minutes) }}:{{ "%02d"|format(seconds) }}
 
-sensor:
-  - platform: template
-    sensors:
-      # We want to keep track of weather wind speed in m/s, as SMHI integration gives km/h,
-      weather_wind_speed_ms:
-        friendly_name: "Weather wind speed"
+  # Set a snapshot in seconds and readable format since 00:00 when sun is below 6 degrees.
+  - trigger:
+      - platform: numeric_state
+        entity_id: sun.sun
+        attribute: elevation
+        below: 6
+      - platform: state
+        entity_id: sun.sun
+        attribute: rising
+        to: false
+    sensor:
+      - name: test_weather_sun_snapshot_elevation_leaves_solarpanels_seconds
+        unit_of_measurement: 'time'
+        state_class: measurement
+        state: "{{ (now().hour * 3600) + (now().minute * 60) + now().second }}"
+      - name: test_weather_sun_snapshot_elevation_leaves_solarpanels_hhmmss
+        state: >
+          {{ "%02d"|format(now().hour) }}:{{ "%02d"|format(now().minute) }}:{{ "%02d"|format(now().second) }}
+
+  # Set time in seconds and readable format when sun can reach the solar panels
+  - trigger:
+      - platform: numeric_state
+        entity_id: sun.sun
+        attribute: elevation
+        below: 0
+      - platform: state
+        entity_id: sun.sun
+        attribute: rising
+        to: false
+    sensor:
+      - name: test_weather_sun_time_reaches_solarpanels_seconds
+        unit_of_measurement: 'time'
+        state_class: measurement
+        state: >
+          {% if (states('sensor.test_weather_sun_snapshot_elevation_reaches_solarpanels_seconds') == "unknown") %}
+          {%   set start = int(0) %}
+          {% else %}
+          {%   set start = int(states('sensor.test_weather_sun_snapshot_elevation_reaches_solarpanels_seconds')) %}
+          {% endif %}
+          {% set stop = (now().hour * 3600) + (now().minute * 60) + now().second %}
+          {% set time = (stop - start) %}
+          {{ int(time) }}
+      - name: test_weather_sun_time_reaches_solarpanels_hhmmss
+        state_class: measurement
+        state: >
+          {% if (states('sensor.test_weather_sun_snapshot_elevation_reaches_solarpanels_seconds') == "unknown") %}
+          {%   set start = int(0) %}
+          {% else %}
+          {%   set start = int(states('sensor.test_weather_sun_snapshot_elevation_reaches_solarpanels_seconds')) %}
+          {% endif %}
+          {% set stop = int((now().hour * 3600) + (now().minute * 60) + now().second) %}
+          {% set time  = (stop - start) %}
+          {% set hours = int(time/3600) %}
+          {% set time = (time - (hours*3600)) %}
+          {% set minutes = int(time/60) %}
+          {% set time = (time - (minutes*60)) %}
+          {% set seconds = time %}
+          {{ "%02d"|format(hours) }}:{{ "%02d"|format(minutes) }}:{{ "%02d"|format(seconds) }}
+
+  - sensor:
+      # We want to keep track of weather wind speed in m/s, as SMHI integration gives km/h.
+      - name: Weather wind speed ms
+        unique_id: weather_wind_speed_ms
         unit_of_measurement: 'm/s' # SMHI integration gives km/h, so we convert.
-        value_template: "{{ (state_attr('weather.smhi_home', 'wind_speed') / 3.6) | round(1) }}"
+        state_class: measurement
+        state: "{{ (state_attr('weather.smhi_home', 'wind_speed') / 3.6) | round(1) }}"
         
-      # We want to keep track of weather wind gust speed in m/s, as SMHI integration gives km/h,
-      weather_wind_gust_speed_ms:
-        friendly_name: "Weather wind gust speed"
+      # We want to keep track of weather wind gust speed in m/s, as SMHI integration gives km/h.
+      - name: Weather wind gust speed ms
+        unique_id: weather_wind_gust_speed_ms
         unit_of_measurement: 'm/s' # SMHI integration gives km/h, so we convert.
-        value_template: "{{ (state_attr('weather.smhi_home', 'wind_gust_speed') / 3.6) | round(1) }}"
+        state_class: measurement
+        state: "{{ (state_attr('weather.smhi_home', 'wind_gust_speed') / 3.6) | round(1) }}"
+        
+      # We want to measure the chill-effect of wind speed on temperature
+      # https://www.smhi.se/kunskapsbanken/meteorologi/vind/vindens-kyleffekt-1.259
+      - name: Weather wind feels like
+        unique_id: weather_wind_feels_like
+        unit_of_measurement: '°C'
+        state_class: measurement
+        state: >
+          {% set t = float(state_attr('weather.smhi_home', 'temperature')) %}
+          {% set v = float(state_attr('weather.smhi_home', 'wind_speed') / 3.6) %}
+          {% set t_calc = v %}
+          {% if (((v > 2) and (v < 40)) and ((t > -40) and (t < 10))) %}
+          {%   set t1 = 0.6215 * t %}
+          {%   set t2 = -13.956 * (v**0.16) %}
+          {%   set t3 = 0.48669 * t * (v**0.16) %}
+          {%   set t_calc = 13.12 + t1 + t2 + t3 %}
+          {% endif %}
+          {{ t_calc | round(1) }}
 ```
 
 ## Package - Nordpool
