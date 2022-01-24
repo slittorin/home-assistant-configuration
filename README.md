@@ -7,6 +7,7 @@
 - [Governing principles](https://github.com/slittorin/home-assistant-configuration#governing-principles)
 - [Packages and Integrations](https://github.com/slittorin/home-assistant-configuration#packages-and-integrations)
   - [Resource - Lovelace Card Mod](https://github.com/slittorin/home-assistant-configuration#resource---lovelace-card-mod)
+  - [Resource - Apex Charts Card](https://github.com/slittorin/home-assistant-configuration#resource---lovelace-card-mod)
   - [Package - Home Assistant](https://github.com/slittorin/home-assistant-configuration#package---home-assistant-system)
   - [Package - Weather](https://github.com/slittorin/home-assistant-configuration#package---weather)
   - [Package - Nordpool](https://github.com/slittorin/home-assistant-configuration#package---nordpool)
