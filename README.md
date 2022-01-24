@@ -6,6 +6,7 @@
 - [Generic information](https://github.com/slittorin/home-assistant-configuration#generic-information)
 - [Governing principles](https://github.com/slittorin/home-assistant-configuration#governing-principles)
 - [Packages and Integrations](https://github.com/slittorin/home-assistant-configuration#packages-and-integrations)
+  - [Resource - Lovelace Card Mod](https://github.com/slittorin/home-assistant-configuration#package---home-assistant-system)
   - [Package - Home Assistant](https://github.com/slittorin/home-assistant-configuration#package---home-assistant-system)
   - [Package - Weather](https://github.com/slittorin/home-assistant-configuration#package---weather)
   - [Package - Nordpool](https://github.com/slittorin/home-assistant-configuration#package---nordpool)
@@ -58,7 +59,17 @@ Secondarily I would like to be able to control and perform automation activities
 
 - Setup HA with [Home Assistance setup](https://github.com/slittorin/home-assistant-setup).
 
-# Packages and Integrations
+# Resources, Packages and Integrations
+
+## Resource - Lovelace Card Mod
+
+We want to keep track of the following for the HA system:
+- Database sizes.
+- Number of objects managed by Home Assistant.
+
+Perform the following:
+
+1. Through the `File Editor` add-on, create the file `/config/packages/ha_system.yaml`
 
 ## Package - Home Assistant system
 
