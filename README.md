@@ -63,7 +63,7 @@ Secondarily I would like to be able to control and perform automation activities
 
 ## Resource - Lovelace Card Mod
 
-We want to tweak lovelace with styles.
+We want to tweak lovelace with CSS styles to various elements of the Home Assistant frontend.
 
 Perform the following:
 
@@ -78,6 +78,22 @@ frontend:
 4. Go to `Configiuration` -> `Dashboards` -> `Resources`:
    - Press `Add resource`:
      - For `URL` type `/local/card-mod.js`.
+     - For `Resource type` choose `Javascript Module`.
+6. Check configuration and restart Home Assistant.
+7. Check logs for errors.
+   - If errors, find the problem.
+
+## Resource - Apex Charts Card
+
+We want to be able to add more customized graph cards.
+
+Perform the following:
+
+1. Download the latest `apexcharts-card.js` file from [Github Apex Charts](https://github.com/RomRider/apexcharts-card)
+2. Through the `File Editor` add-on, save `apexcharts-card.js` in `/config/www`.
+4. Go to `Configiuration` -> `Dashboards` -> `Resources`:
+   - Press `Add resource`:
+     - For `URL` type `/local/apexcharts-card.js`.
      - For `Resource type` choose `Javascript Module`.
 6. Check configuration and restart Home Assistant.
 7. Check logs for errors.
