@@ -70,11 +70,11 @@ Perform the following:
 
 1. Through the `File Editor` add-on, create the file `/config/packages/ha_system.yaml`
 2. Through the `File Editor` add-on, edit the file `/config/configuration.yaml` and after `  packages:` (mind the spaces):
-```
+```yaml
     ha_system: !include packages/ha_system.yaml
 ```
 3. Through the `File Editor` add-on, edit the file `/config/packages/ha_system.yaml` and add:
-```
+```yaml
 # This file includes all the entities for the Home Assistant system.
 
 sensor:
