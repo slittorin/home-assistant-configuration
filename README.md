@@ -1,5 +1,7 @@
 # Home Assistant - Configuration
 
+https://github.com/slittorin/home-assistant-configuration/blob/fa47d1567fde31bcb4058b1f7112f892b07d23f7/config/test
+
 ## Table of content
 
 - [Goal](https://github.com/slittorin/home-assistant-configuration#goal)
