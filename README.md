@@ -6,7 +6,7 @@
 - [Generic information](https://github.com/slittorin/home-assistant-configuration#generic-information)
 - [Governing principles](https://github.com/slittorin/home-assistant-configuration#governing-principles)
 - [Packages and Integrations](https://github.com/slittorin/home-assistant-configuration#packages-and-integrations)
-  - [Resource - Lovelace Card Mod](https://github.com/slittorin/home-assistant-configuration#package---home-assistant-system)
+  - [Resource - Lovelace Card Mod](https://github.com/slittorin/home-assistant-configuration#resource---lovelace-card-mod)
   - [Package - Home Assistant](https://github.com/slittorin/home-assistant-configuration#package---home-assistant-system)
   - [Package - Weather](https://github.com/slittorin/home-assistant-configuration#package---weather)
   - [Package - Nordpool](https://github.com/slittorin/home-assistant-configuration#package---nordpool)
@@ -63,13 +63,25 @@ Secondarily I would like to be able to control and perform automation activities
 
 ## Resource - Lovelace Card Mod
 
-We want to keep track of the following for the HA system:
-- Database sizes.
-- Number of objects managed by Home Assistant.
+We want to tweak lovelace with styles.
 
 Perform the following:
 
-1. Through the `File Editor` add-on, create the file `/config/packages/ha_system.yaml`
+1. Download the latest `card-mod.js` file from [Github Lovelace Card Mod](https://github.com/thomasloven/lovelace-card-mod)
+2. Through the `File Editor` add-on, save `card-mod.js` in `/config/www`.
+3. Through the `File Editor` add-on, edit the file `/config/configuration.yaml` and add:
+```yaml
+frontend:
+  extra_module_url:
+    - /local/card-mod.js
+```
+4. Go to `Configiuration` -> `Dashboards` -> `Resources`:
+   - Press `Add resource`:
+     - For `URL` type `/local/card-mod.js`.
+     - For `Resource type` choose `Javascript Module`.
+6. Check configuration and restart Home Assistant.
+7. Check logs for errors.
+   - If errors, find the problem.
 
 ## Package - Home Assistant system
 
