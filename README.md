@@ -90,7 +90,6 @@ sensor:
         column: "value"
         unit_of_measurement: 'MB'
 
-
 template:
   - trigger:
       - platform: time
@@ -125,11 +124,11 @@ Perform the following:
    - If you want to keep historical data, do not delete this integration.
 5. Through the `File Editor` add-on, create the file `/config/packages/weather.yaml`
 6. Through the `File Editor` add-on, edit the file `/config/configuration.yaml` and after `  packages:` (mind the spaces):
-```
+```yaml
     ha_system: !include packages/weather.yaml
 ```
 7. Through the `File Editor` add-on, edit the file `/config/packages/weather.yaml` and add:
-```
+```yaml
 # This file includes all the items for the Weather integration.
 
 # Logic:
@@ -354,11 +353,11 @@ We want to have gather the current cost for electricity in my region.
    - This may take a while as the custom component is installed.
 3. Through the `File Editor` add-on, create the file `/config/packages/tariff_electrical.yaml`
 4. Through the `File Editor` add-on, edit the file `/config/configuration.yaml` and after `  packages:` (mind the spaces):
-```
+```yaml
     tariff_electrical: !include packages/tariff_electrical.yaml
 ```
 5. Through the `File Editor` add-on, edit the file `/config/packages/tariff_electrical.yaml` and add:
-```
+```yaml
 # This file includes all the items for the electrical tariffs.
 
 sensor:
@@ -412,7 +411,7 @@ We want to gather information about our Jacuzzi that has a Balboa Spa WiFi Modul
     balboa_spa: !include packages/balboa_spa.yaml
 ```
 4. Through the `File Editor` add-on, edit the file `/config/packages/balboa_spa.yaml` and add:
-```
+```yaml
 # This file includes all the items for the Balboa Spa Client add-on.
 
 sensor:
@@ -480,4 +479,3 @@ template:
         state_class: total_increasing
         state: "{{ float(states('sensor.balboa_spa_heater_running_time_daily'), 0) * 3 }}"
 ```
-
