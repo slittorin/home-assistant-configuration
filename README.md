@@ -34,13 +34,11 @@ Secondarily I would like to be able to control and perform automation activities
 #### Styles, naming convention, device and state class, and unit of measurement:
 - Configuration-files/yaml:
   - Do not create more sensors than needed. Rely on the standard integration entities/attributes.
-    - Where required, create new sensors if attributes cannot be utilized by templates, triggers or other.
+    - Since states (and therefore also InfluxDB states) do not track attribute changes, make sure to create sensors for the attributes you want to track.
+      - And of course, where required, create new sensors if attributes cannot be utilized by templates, triggers or other.
   - Use [Modern configuration format](https://www.home-assistant.io/integrations/template/#configuration-variables).
   - Follow the [Style guide](https://developers.home-assistant.io/docs/documenting/yaml-style-guide/).
-  - Utilize [Packages](https://www.home-assistant.io/docs/configuration/packages/) to bundle together services/entities in packages.
-  - ????Utilize primarily [Style 1](https://www.home-assistant.io/docs/configuration/devices#style-2-list-each-device-separately) convention.
-  - Make sure that the new format to manage functions is utilized from [2021.10.x](https://community.home-assistant.io/t/updating-templates-with-the-new-default-values-in-2021-10-x/346198).
-  - Naming convention for `name:` of Sensor/Entity ID (and where required name) shall follow the naming standard:
+  - Naming convention for `name:` and `unique_id:`of Sensor/Entity ID (and where required name) shall follow the naming standard:
     - `Device/Type` `area/attribute` `(if required location/zone)` `state/measure` `device` `unit of measurement`.
     - This will render unique id
       - balboa_spa_heater_on
@@ -49,6 +47,8 @@ Secondarily I would like to be able to control and perform automation activities
       - balboa_spa_heater_consumption_daily
     - When testing, add `test_` before the entity id.
       - However remember that these sensors are not written to history, as we have excluded these sensors in the configuration file, so for instance history_stats will not work with `test_` entites.
+  - Utilize [Packages](https://www.home-assistant.io/docs/configuration/packages/) to bundle together services/entities in packages.
+  - Make sure that the new format to manage functions is utilized from [2021.10.x](https://community.home-assistant.io/t/updating-templates-with-the-new-default-values-in-2021-10-x/346198).
   - To allow Home Assistant to correctly identify and utilize sensors/data, always utilize:
     - When utilizing customized entities, utilize `device_class`. Valid types can be found under each platform [here](https://www.home-assistant.io/docs/configuration/customizing-devices/#device-class).
     - Utilize `state_class` where valid when defining sensor/template sensors. Valid types can be found [here](https://developers.home-assistant.io/docs/core/entity/sensor/#available-state-classes).
