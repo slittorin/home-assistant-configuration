@@ -56,7 +56,7 @@ Secondarily I would like to be able to control and perform automation activities
     - Utilize `unit of measurement` for all entities/sensors. Standard units is found [here](https://github.com/home-assistant/core/blob/dev/homeassistant/const.py).
     - For power/consumption related sensors one may also look to add integration [Powercalc](https://github.com/bramstroker/homeassistant-powercalc), specifically for binary sensors.
 
-#### Governing principles
+# Governing principles
 
 - Setup HA with [Home Assistance setup](https://github.com/slittorin/home-assistant-setup).
 
