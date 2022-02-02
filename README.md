@@ -449,6 +449,8 @@ sensor:
 
 We want to have gather information from our SMA Solar inverter (that also gets information from Home Manager 2.0), to gather information about load, loads and yields.
 
+See also errors that can occur with this Integration: [Incorrect SMA Energy data](https://github.com/slittorin/home-assistant-maintenance#incorrect-sma-energy-data)
+
 1. Add integration `SMA Solar` with the following parameters:
    - `Host`: IP of the SMA Inverter (that we have set fixed IP on).
    - Check `Uses an SSL certificate`.
@@ -474,8 +476,6 @@ We want to have gather information from our SMA Solar inverter (that also gets i
 ## Package - Balboa Spa
 
 We want to gather information about our Jacuzzi that has a Balboa Spa WiFi Module installed.
-
-See also errors that can occur with this Integration: [Incorrect SMA Energy data](https://github.com/slittorin/home-assistant-maintenance#incorrect-sma-energy-data)
 
 1. Add integration `Balboa Spa client` with the following parameters:
    - `Host`: IP of the SMA Inverter (that we have set fixed IP on).
