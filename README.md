@@ -63,9 +63,9 @@ Secondarily I would like to be able to control and perform automation activities
 
 # Resources, Packages and Integrations
 
-## Github pull
+## Github Push
 
-We want to utilize Github push instead of pull as the original files are to reside on my HA-device.\
+We want to utilize Github Push instead of Pull as the original files are to reside on my HA-device.\
 Therefore we do not utilize the standard Github Pull integration.
 
 Perform the following:
