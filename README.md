@@ -66,7 +66,8 @@ Secondarily I would like to be able to control and perform automation activities
 ## Github Push
 
 We want to utilize Github Push instead of Pull as the original files are to reside on my HA-device.\
-Therefore we do not utilize the standard Github Pull integration.
+Therefore we do not utilize the standard Github Pull integration.\
+Inspiration from the [community](https://community.home-assistant.io/t/sharing-your-configuration-on-github/195144).
 
 Note: HASS.io already has git installed, so no need to install git.
 
@@ -74,8 +75,17 @@ Pre-requisities: That repository `home-assistant-config` is created in Github.
 
 Perform the following:
 
-1. Through the `File Editor` add-on, create `.gitignore` in `/config/` with the following content:
-```
+1. If not already done, create a Github personal access token:
+   - According [instructions](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token))-
+   - Set preferably an Expiration date (and keep note of the date and update the token accordingly).
+   - Set the following scopes:
+     - `repo`.
+     - `gists`.
+   - Copy the token.
+2. Through the `File Editor` add-on, add the following to `.env` in `/config/` (where TOKEN is the copied token, ensure that usename and repository is correct):
+   `GITHUB_CONNECT_STRING=https://TOKEN@github.com/slittorin/home-assistant-config`
+4. Through the `File Editor` add-on, create `.gitignore` in `/config/` with the following content:
+```git config
 # .gitignore for Home Assistant.
 # An * ensures that everything will be ignored.
 *
@@ -89,11 +99,36 @@ Perform the following:
 .cloud
 .google.token
 
+# Ignore .env that may store sensitive variables.
+.env
+
 # Ensure these YAML files are ignored, otherwise your secret data/credentials will leak.
 ip_bans.yaml
 secrets.yaml
 ```
-2. Through ss
+4. Through the 'SSH & Web terminal' run the following in the `/config` directory (change your email and name to match your Github account, and ensure that all directories you want to add to Github are present):
+   You will be asked to provide a comment at commit.
+```bash
+git init
+git config user.email "you@example.com"
+git config user.name "Your Name"
+git add .
+git add -f ./blueprints/*
+git add -f ./custom_components/*
+git add -f ./packages/*
+git add -f ./tts/*
+git add -f ./www/*
+git commit
+```
+5. Through the 'SSH & Web terminal' run the following in the `/config` directory (where TOKEN is the copied token, ensure that usename and repository is correct):
+   You will be asked to login to Github.
+```bash
+git remote add origin https://TOKEN@github.com/slittorin/home-assistant-config
+git push -u origin master
+```
+6. The output should end with something like the following: `Branch 'master' setup to track remote branch 'master' from 'origin'`.
+7. Go to Github and verify that the repository is updated.
+   - Otherwise perform error correction.
 
 ## Resource - Lovelace Card Mod
 
