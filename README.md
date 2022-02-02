@@ -181,38 +181,9 @@ Perform the following:
 ```yaml
     ha_system: !include packages/ha_system.yaml
 ```
-3. Through the `File Editor` add-on, edit the file `/config/packages/ha_system.yaml` and add:
-```yaml
-# This file includes all the entities for the Home Assistant system.
-
-sensor:
-    # Get the MariaDB database size.
-  - platform: sql
-    db_url: !secret recorder_db_url
-    # Scan every 10:t minute.
-    scan_interval: 600
-    queries:
-      # We keep track of the MariaDB database size.
-      - name: home_assistant_db_size
-        query: 'SELECT table_schema "database", Round(Sum(data_length + index_length) / 1024 / 1024, 1) "value" FROM information_schema.tables WHERE table_schema="homeassistant" GROUP BY table_schema;'
-        column: "value"
-        unit_of_measurement: 'MB'
-
-template:
-  - trigger:
-      - platform: time
-        at: "00:00:00"
-    sensor:
-      # Get the number of domains, and entities within each domain.
-      # https://community.home-assistant.io/t/where-can-i-find-a-list-of-domains/62654/20
-      - name: test_home_assistant_domains_in_use
-        state_class: measurement
-        state: >
-          {%- for d in states | groupby('domain') %}
-          {% if loop.first %}{{loop.length}} Domains:
-          {% endif %}- {{ d[0] }}: {{d[0]|count}}
-          {%- endfor %}
-```
+3. Through the `File Editor` add-on, edit the file [/config/packages/ha_system.yaml](https://github.com/slittorin/home-assistant-config/blob/master/packages/ha_system.yaml) and add:
+   - Sensor for MariaDB size.
+   - Triggers for keeping track of domain-entities.
 
 ## Package - Weather
 
