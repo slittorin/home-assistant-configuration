@@ -87,13 +87,15 @@ Perform the following:
 4. Through the `File Editor` add-on, create `.gitignore` in `/config/` with the following content:
 ```git config
 # .gitignore for Home Assistant.
-# An * ensures that everything will be ignored.
 
+# An * ensures that everything will be ignored.
 *
+
 # Whitelisted files/folders, these will not be ignored.
 !*.yaml
 !.gitignore
 !*.md
+!*.sh
 
 # Ignore folders.
 .storage
