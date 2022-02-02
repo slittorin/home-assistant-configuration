@@ -88,6 +88,7 @@ Perform the following:
 ```git config
 # .gitignore for Home Assistant.
 # An * ensures that everything will be ignored.
+
 *
 # Whitelisted files/folders, these will not be ignored.
 !*.yaml
