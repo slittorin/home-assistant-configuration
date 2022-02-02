@@ -6,6 +6,7 @@
 - [Generic information](https://github.com/slittorin/home-assistant-configuration#generic-information)
 - [Governing principles](https://github.com/slittorin/home-assistant-configuration#governing-principles)
 - [Packages and Integrations](https://github.com/slittorin/home-assistant-configuration#packages-and-integrations)
+  - [Package - Home Assistant](https://github.com/slittorin/home-assistant-configuration#package---home-assistant-system)
   - [Resource - Lovelace Card Mod](https://github.com/slittorin/home-assistant-configuration#resource---lovelace-card-mod)
   - [Resource - Apex Charts Card](https://github.com/slittorin/home-assistant-configuration#resource---apex-charts-card)
   - [Package - Home Assistant](https://github.com/slittorin/home-assistant-configuration#package---home-assistant-system)
@@ -61,6 +62,15 @@ Secondarily I would like to be able to control and perform automation activities
 - Setup HA with [Home Assistance setup](https://github.com/slittorin/home-assistant-setup).
 
 # Resources, Packages and Integrations
+
+## Github pull
+
+We want to utilize Github push instead of pull as the original files are to reside on my HA-device.\
+Therefore we do not utilize the standard Github Pull integration.
+
+Perform the following:
+
+1. Download the latest `card
 
 ## Resource - Lovelace Card Mod
 
