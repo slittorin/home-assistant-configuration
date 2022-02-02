@@ -102,6 +102,9 @@ Perform the following:
 .cloud
 .google.token
 
+# Ignore .log-files.
+*.log
+
 # Ignore .env that may store sensitive variables.
 .env
 
