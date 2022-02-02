@@ -6,7 +6,7 @@
 - [Generic information](https://github.com/slittorin/home-assistant-configuration#generic-information)
 - [Governing principles](https://github.com/slittorin/home-assistant-configuration#governing-principles)
 - [Packages and Integrations](https://github.com/slittorin/home-assistant-configuration#packages-and-integrations)
-  - [Package - Home Assistant](https://github.com/slittorin/home-assistant-configuration#package---home-assistant-system)
+  - [Github Push](https://github.com/slittorin/home-assistant-configuration#github-push)
   - [Resource - Lovelace Card Mod](https://github.com/slittorin/home-assistant-configuration#resource---lovelace-card-mod)
   - [Resource - Apex Charts Card](https://github.com/slittorin/home-assistant-configuration#resource---apex-charts-card)
   - [Package - Home Assistant](https://github.com/slittorin/home-assistant-configuration#package---home-assistant-system)
@@ -68,9 +68,32 @@ Secondarily I would like to be able to control and perform automation activities
 We want to utilize Github Push instead of Pull as the original files are to reside on my HA-device.\
 Therefore we do not utilize the standard Github Pull integration.
 
+Note: HASS.io already has git installed, so no need to install git.
+
+Pre-requisities: That repository `home-assistant-config` is created in Github.
+
 Perform the following:
 
-1. Download the latest `card
+1. Through the `File Editor` add-on, create `.gitignore` in `/config/` with the following content:
+```
+# .gitignore for Home Assistant.
+# An * ensures that everything will be ignored.
+*
+# Whitelisted files/folders, these will not be ignored.
+!*.yaml
+!.gitignore
+!*.md
+
+# Ignore folders.
+.storage
+.cloud
+.google.token
+
+# Ensure these YAML files are ignored, otherwise your secret data/credentials will leak.
+ip_bans.yaml
+secrets.yaml
+```
+2. Through ss
 
 ## Resource - Lovelace Card Mod
 
@@ -451,6 +474,8 @@ We want to have gather information from our SMA Solar inverter (that also gets i
 ## Package - Balboa Spa
 
 We want to gather information about our Jacuzzi that has a Balboa Spa WiFi Module installed.
+
+See also errors that can occur with this Integration: [Incorrect SMA Energy data](https://github.com/slittorin/home-assistant-maintenance#incorrect-sma-energy-data)
 
 1. Add integration `Balboa Spa client` with the following parameters:
    - `Host`: IP of the SMA Inverter (that we have set fixed IP on).
