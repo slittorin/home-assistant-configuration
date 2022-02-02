@@ -76,7 +76,7 @@ Pre-requisities: That repository `home-assistant-config` is created in Github.
 Perform the following:
 
 1. If not already done, create a Github personal access token:
-   - According [instructions](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token))-
+   - According [instructions](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)-
    - Set preferably an Expiration date (and keep note of the date and update the token accordingly).
    - Set the following scopes:
      - `repo`.
