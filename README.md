@@ -119,6 +119,7 @@ git add .
 git add -f ./blueprints/*
 git add -f ./custom_components/*
 git add -f ./packages/*
+git add -f ./scripts/*
 git add -f ./tts/*
 git add -f ./www/*
 git commit
