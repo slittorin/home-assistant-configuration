@@ -101,6 +101,7 @@ Perform the following:
 .storage
 .cloud
 .google.token
+logs
 
 # Ignore .log-files.
 *.log
@@ -118,14 +119,6 @@ secrets.yaml
 git init
 git config user.email "you@example.com"
 git config user.name "Your Name"
-git add .
-git add -f ./blueprints/*
-git add -f ./custom_components/*
-git add -f ./packages/*
-git add -f ./scripts/*
-git add -f ./tts/*
-git add -f ./www/*
-git commit
 ```
 5. Through the 'SSH & Web terminal' run the following in the `/config` directory (where TOKEN is the copied token, ensure that usename and repository is correct):
    You will be asked to login to Github.
