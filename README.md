@@ -289,7 +289,7 @@ Perform the following:
 ```yaml
     ha_system: !include packages/ha_system.yaml
 ```
-3. Through the `File Editor` add-on, edit the file [/config/packages/ha_system.yaml](https://github.com/slittorin/home-assistant-config/blob/master/packages/ha_system.yaml) and add:
+3. Through the `File Editor` add-on, edit the file [/config/packages/ha_system.yaml](https://github.com/slittorin/home-assistant-config/blob/master/packages/ha_system.yaml) and add the following:
    - Sensor for MariaDB size.
    - Triggers for keeping track of domain-entities.
 
