@@ -32,6 +32,10 @@ Secondarily I would like to be able to control and perform automation activities
    - Any warnings or errors can be found in the file `/config/home-assistant.log`.
    - It can take up to 1-2 minutes before updates are made.
 
+# Governing principles
+
+- Setup HA with [Home Assistance setup](https://github.com/slittorin/home-assistant-setup).
+
 #### Styles, naming convention, device and state class, and unit of measurement:
 - Configuration-files/yaml:
   - Do not create more sensors than needed. Rely on the standard integration entities/attributes.
@@ -56,10 +60,6 @@ Secondarily I would like to be able to control and perform automation activities
       - Note that legacy configuration format (see modern above), do not support `state_class`.
     - Utilize `unit of measurement` for all entities/sensors. Standard units is found [here](https://github.com/home-assistant/core/blob/dev/homeassistant/const.py).
     - For power/consumption related sensors one may also look to add integration [Powercalc](https://github.com/bramstroker/homeassistant-powercalc), specifically for binary sensors.
-
-# Governing principles
-
-- Setup HA with [Home Assistance setup](https://github.com/slittorin/home-assistant-setup).
 
 # Resources, Packages and Integrations
 
@@ -246,7 +246,7 @@ Perform the following:
 
 1. Download the latest `card-mod.js` file from [Github Lovelace Card Mod](https://github.com/thomasloven/lovelace-card-mod)
 2. Through the `File Editor` add-on, save `card-mod.js` in `/config/www`.
-3. Through the `File Editor` add-on, edit the file `/config/configuration.yaml` and add:
+3. Through the `File Editor` add-on, edit the file [/config/configuration.yaml(https://github.com/slittorin/home-assistant-config/blob/master/configuration.yaml) and add:
 ```yaml
 frontend:
   extra_module_url:
