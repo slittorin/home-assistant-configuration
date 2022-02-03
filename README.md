@@ -84,7 +84,7 @@ Perform the following:
    - Copy the token.
 2. Through the `File Editor` add-on, add the following to `.env` in `/config/` (where TOKEN is the copied token, ensure that usename and repository is correct):
    `GITHUB_CONNECT_STRING=https://TOKEN@github.com/slittorin/home-assistant-config`
-4. Through the `File Editor` add-on, create `.gitignore` in `/config/` with the following content:
+3. Through the `File Editor` add-on, create `.gitignore` in `/config/` with the following content:
 ```git config
 # .gitignore for Home Assistant.
 
@@ -118,14 +118,123 @@ git config user.email "you@example.com"
 git config user.name "Your Name"
 ```
 5. Through the 'SSH & Web terminal' run the following in the `/config` directory (where TOKEN is the copied token, ensure that usename and repository is correct):
-   You will be asked to login to Github.
+   Note that git push can give error, that is nothing to trouble shoot.
 ```bash
 git remote add origin https://TOKEN@github.com/slittorin/home-assistant-config
 git push -u origin master
 ```
-6. The output should end with something like the following: `Branch 'master' setup to track remote branch 'master' from 'origin'`.
-7. Go to Github and verify that the repository is updated.
-   - Otherwise perform error correction.
+6. Through the `File Editor` add-on, add the file `/config/scripts/github_push.sh` and add:
+```bash
+#!/bin/bash
+#
+# Purpose:
+# Push configuration to github.
+#
+# Usage:
+# ./github_push.sh COMMENT
+#
+# COMMENT is the comment to add to the push-commit.
+# If empty, the default comment will be: "Minor change."
+
+# Load environment variables (mainly secrets).
+if [ -f "/config/.env" ]; then
+    export $(cat "/config/.env" | grep -v '#' | sed 's/\r$//' | awk '/=/ {print $1}' )
+fi
+
+# Variables:
+base_dir="/config/scripts"
+log_dir="/config/logs"
+config_dir="/config"
+logfile="${log_dir}/github_push.log"
+
+_initialize() {
+    touch "${logfile}"
+
+    echo ""
+    echo "$(date +%Y%m%d_%H%M%S): Starting Github push."
+    
+    # Check input.
+    if [ -z "$1" ]
+    then
+        comment="Minor change."
+        echo "$(date +%Y%m%d_%H%M%S): No input given, setting comment to default."
+    else
+        comment="$1"
+    fi
+}
+
+_github_push() {
+    cd ${config_dir}
+    
+    # Add all in config dor.
+    git add .
+
+    # Loop through all directories and add to git.
+    for dir in */ ; do
+        add_dir=1
+        
+        if [ ${dir} = "logs/" ] # Do not add logs-directory.
+        then
+           add_dir=0
+        fi
+        
+        if [ ${add_dir} -eq 1 ]
+        then
+            echo "$(date +%Y%m%d_%H%M%S): Added directory: ${dir}"
+            git add -f "${dir}"
+        else
+            echo "$(date +%Y%m%d_%H%M%S): Did not add directory: ${dir}"
+        fi
+    done
+
+    exit_code=0
+    status_error=""
+
+    git status
+    if [ $? -ne 0 ] 
+    then
+        exit_code=1
+        status_error+=" status"
+    fi
+
+    git commit -m "${comment}"
+    if [ $? -ne 0 ] 
+    then
+        exit_code=1
+        status_error+=" commit"
+    fi
+
+    git push origin master
+    if [ $? -ne 0 ] 
+    then
+        exit_code=1
+        status_error+=" push"
+    fi
+
+    # Check if error occured with git commands.
+    if [ ${exit_code} -eq 0 ] 
+    then
+        status=" No error."
+    else
+        status=" Error in: git${status_error}."
+    fi
+}
+
+_finalize() {
+    echo "$(date +%Y%m%d_%H%M%S): Git push performed:${status}"
+    exit ${exit_code}
+}
+
+# Main
+_initialize >> "${logfile}" 2>&1
+_github_push >> "${logfile}" 2>&1
+_finalize >> "${logfile}" 2>&1
+```
+7. Through the 'SSH & Web terminal' run the following in the `/config/script` directory:
+   - `chmd ug+x github_push.sh`.
+   - `./github_push.sh`-
+8. Check the log-file `/config/logs/github_push.log`.
+   - Isolate if there are errors, and if needed correct them.
 
 ## Resource - Lovelace Card Mod
 
