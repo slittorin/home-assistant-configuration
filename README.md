@@ -234,7 +234,9 @@ _finalize >> "${logfile}" 2>&1
    - `chmd ug+x github_push.sh`.
    - `./github_push.sh`-
 8. Check the log-file `/config/logs/github_push.log`.
-   - Isolate if there are errors, and if needed correct them.
+   - Isolate if there are errors, and if needed isolate the problem.
+9. Go to the github repositor and check that all files has been properly pushed.
+   - Isolate if there are errors, and if needed isolate the problem.
 
 ## Resource - Lovelace Card Mod
 
