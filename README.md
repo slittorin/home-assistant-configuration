@@ -103,9 +103,6 @@ Perform the following:
 .google.token
 logs
 
-# Ignore .log-files.
-*.log
-
 # Ignore .env that may store sensitive variables.
 .env
 
