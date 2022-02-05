@@ -88,25 +88,38 @@ Perform the following:
 ```git config
 # .gitignore for Home Assistant.
 
-# An * ensures that everything will be ignored.
+# First rule: Ignore everything, all files in root and all directories.
 *
+*/*
 
-# Whitelisted files/folders, these will not be ignored.
+# Second rule: Whitelisted folders, these will not be ignored.
+!/blueprints/
+!/blueprints/**
+!/deps/
+!/deps/**
+!/packages/
+!/packages/**
+!/scripts/
+!/scripts/**
+!/tts/
+!/tts/**
+!/www/
+!/www/**
+
+# Third rule: Whitelisted files, these will not be ignored.
 !*.yaml
 !.gitignore
 !*.md
 !*.sh
 
-# Ignore folders.
-.storage
-.cloud
-.google.token
-logs
+# Fourth rule is more specific, as we want to whitelist certain files in .storage
+!/.storage/
+!/.storage/lovelace
+!/.storage/lovelace.*
+!/.storage/lovelace_*
 
-# Ignore .env that may store sensitive variables.
+# Last rule: Ensure these files are ignored, otherwise your secret data/credentials will leak.
 .env
-
-# Ensure these YAML files are ignored, otherwise your secret data/credentials will leak.
 ip_bans.yaml
 secrets.yaml
 ```
