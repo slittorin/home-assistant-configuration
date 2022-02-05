@@ -118,7 +118,7 @@ Perform the following:
 !/.storage/lovelace.*
 !/.storage/lovelace_*
 
-# Last rule: Ensure these files are ignored, otherwise your secret data/credentials will leak.
+# Last rule: If we make a mistake above, ensure these files are ignored, otherwise your secret data/credentials will leak.
 .env
 ip_bans.yaml
 secrets.yaml
@@ -174,6 +174,7 @@ _initialize() {
     touch "${logfile}"
 
     echo ""
+    echo "----------------------------------------------------------------------------------------------------------------"
     echo "$(date +%Y%m%d_%H%M%S): Starting Github push."
 
     if [ ${no_comment} -eq 1 ] 
@@ -185,49 +186,46 @@ _initialize() {
 _github_push() {
     cd ${config_dir}
     
-    # Add all in config dor.
-    git add .
-
-    # Loop through all directories and add to git.
-    for dir in */ ; do
-        add_dir=1
-        
-        if [ ${dir} = "logs/" ] # Do not add logs-directory.
-        then
-           add_dir=0
-        fi
-        
-        if [ ${add_dir} -eq 1 ]
-        then
-            echo "$(date +%Y%m%d_%H%M%S): Added directory: ${dir}"
-            git add -f "${dir}"
-        else
-            echo "$(date +%Y%m%d_%H%M%S): Did not add directory: ${dir}"
-        fi
-    done
-
     exit_code=0
     status_error=""
+    
+    # Add all in /config dir (according to .gitignore).
+    echo "$(date +%Y%m%d_%H%M%S): Added all in base directory"
+    git add .
+    
+    # We also add .storage, but allow .gitignore to only allow whitelisted files.
+    # This to be able to add Lovelace files managed by UI.
+    echo "$(date +%Y%m%d_%H%M%S): Added directory: .storage/"
+    git add .storage/
+
+    # Loop through all directories and add to git (according to .gitignore).
+    for dir in */ ; do
+        echo "$(date +%Y%m%d_%H%M%S): Added directory: ${dir}"
+        git add "${dir}"
+    done
 
     git status
-    if [ $? -ne 0 ] 
+    git_exit_code=$?
+    if [ ${git_exit_code} -ne 0 ] 
     then
         exit_code=1
-        status_error+=" status"
+        status_error+=" status (${git_exit_code})"
     fi
 
     git commit -m "${comment}"
-    if [ $? -ne 0 ] 
+    git_exit_code=$?
+    if [ ${git_exit_code} -ne 0 ] 
     then
         exit_code=1
-        status_error+=" commit"
+        status_error+=" commit (${git_exit_code})"
     fi
 
     git push origin master
-    if [ $? -ne 0 ] 
+    git_exit_code=$?
+    if [ ${git_exit_code} -ne 0 ] 
     then
         exit_code=1
-        status_error+=" push"
+        status_error+=" push (${git_exit_code})"
     fi
 
     # Check if error occured with git commands.
