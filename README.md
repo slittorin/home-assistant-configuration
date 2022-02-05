@@ -73,6 +73,8 @@ Note: HASS.io already has git installed, so no need to install git.
 
 Pre-requisities: That repository `home-assistant-config` is created in Github.
 
+Se also [Github Push in Visualizations - Dashboard Home Assistant](https://github.com/slittorin/home-assistant-visualization/blob/main/README.md#dashboard---home-assistant).
+
 Perform the following:
 
 1. If not already done, create a Github personal access token:
