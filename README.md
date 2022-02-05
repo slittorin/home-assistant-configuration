@@ -110,14 +110,14 @@ logs
 ip_bans.yaml
 secrets.yaml
 ```
-4. Through the 'SSH & Web terminal' run the following in the `/config` directory (change your email and name to match your Github account, and ensure that all directories you want to add to Github are present):
+4. Through the 'SSH & Web terminal' run the following in the `/config` directory (change your email and name to match your Github account, and ensure that all directories you want to add to Github are present):\
    You will be asked to provide a comment at commit.
 ```bash
 git init
 git config user.email "you@example.com"
 git config user.name "Your Name"
 ```
-5. Through the 'SSH & Web terminal' run the following in the `/config` directory (where TOKEN is the copied token, ensure that usename and repository is correct):
+5. Through the 'SSH & Web terminal' run the following in the `/config` directory (where TOKEN is the copied token, ensure that usename and repository is correct):\
    Note that git push can give error, that is nothing to trouble shoot.
 ```bash
 git remote add origin https://TOKEN@github.com/slittorin/home-assistant-config
