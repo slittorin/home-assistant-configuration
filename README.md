@@ -141,6 +141,16 @@ if [ -f "/config/.env" ]; then
     export $(cat "/config/.env" | grep -v '#' | sed 's/\r$//' | awk '/=/ {print $1}' )
 fi
 
+# Check input.
+if [ -z "$1" ]
+then
+    no_comment=1
+    comment="Minor change."
+else
+    no_comment=0
+    comment="$1"
+fi
+
 # Variables:
 base_dir="/config/scripts"
 log_dir="/config/logs"
@@ -152,14 +162,10 @@ _initialize() {
 
     echo ""
     echo "$(date +%Y%m%d_%H%M%S): Starting Github push."
-    
-    # Check input.
-    if [ -z "$1" ]
+
+    if [ ${no_comment} -eq 1 ] 
     then
-        comment="Minor change."
         echo "$(date +%Y%m%d_%H%M%S): No input given, setting comment to default."
-    else
-        comment="$1"
     fi
 }
 
@@ -214,24 +220,24 @@ _github_push() {
     # Check if error occured with git commands.
     if [ ${exit_code} -eq 0 ] 
     then
-        status=" No error."
+        status="No error."
     else
-        status=" Error in: git${status_error}."
+        status="Error in: git${status_error}."
     fi
 }
 
 _finalize() {
-    echo "$(date +%Y%m%d_%H%M%S): Git push performed:${status}"
-    exit ${exit_code}
+    echo "$(date +%Y%m%d_%H%M%S): ${status}"
 }
 
 # Main
 _initialize >> "${logfile}" 2>&1
 _github_push >> "${logfile}" 2>&1
 _finalize >> "${logfile}" 2>&1
+exit ${exit_code}
 ```
 7. Through the 'SSH & Web terminal' run the following in the `/config/script` directory:
-   - `chmd ug+x github_push.sh`.
+   - `chmod ug+x github_push.sh`.
    - `./github_push.sh`-
 8. Check the log-file `/config/logs/github_push.log`.
    - Isolate if there are errors, and if needed isolate the problem.
