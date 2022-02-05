@@ -256,6 +256,10 @@ exit ${exit_code}
    - Isolate if there are errors, and if needed isolate the problem.
 9. Go to the github repositor and check that all files has been properly pushed.
    - Isolate if there are errors, and if needed isolate the problem.
+10.  Through the `File Editor` add-on, edit the file [/config/configuration.yaml](https://github.com/slittorin/home-assistant-config/blob/master/configuration.yaml) and add after `shell_command:` (if not already present, add `shell_command:`, mind the space ):
+    ```yaml
+       github_push: /config/scripts/github_push.sh "{{ value }}"
+    ```
 
 ## Resource - Lovelace Card Mod
 
