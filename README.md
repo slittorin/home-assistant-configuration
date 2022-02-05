@@ -5,7 +5,7 @@
 - [Goal](https://github.com/slittorin/home-assistant-configuration#goal)
 - [Generic information](https://github.com/slittorin/home-assistant-configuration#generic-information)
 - [Governing principles](https://github.com/slittorin/home-assistant-configuration#governing-principles)
-- [Resources, Packages and Integrations](https://github.com/slittorin/home-assistant-configuration#packages-and-integrations)
+- [Resources, Packages and Integrations](https://github.com/slittorin/home-assistant-configuration#resources-packages-and-integrations)
   - [Github Push](https://github.com/slittorin/home-assistant-configuration#github-push)
   - [Resource - Lovelace Card Mod](https://github.com/slittorin/home-assistant-configuration#resource---lovelace-card-mod)
   - [Resource - Apex Charts Card](https://github.com/slittorin/home-assistant-configuration#resource---apex-charts-card)
