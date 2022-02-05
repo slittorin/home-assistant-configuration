@@ -260,6 +260,17 @@ exit ${exit_code}
 ```yaml
   github_push: /config/scripts/github_push.sh "{{ value }}"
 ```
+11. Through the `File Editor` add-on, create the file `/config/packages/github_push.yaml`
+2. Through the `File Editor` add-on, edit the file [/config/configuration.yaml](https://github.com/slittorin/home-assistant-config/blob/master/configuration.yaml) and after `  packages:` (mind the spaces):
+```yaml
+    github_push: !include packages/github_push.yaml
+```
+3. Through the `File Editor` add-on, edit the file [/config/packages/github_push.yaml](https://github.com/slittorin/home-assistant-config/blob/master/packages/github_push.yaml) and add the following:
+   - Input text for committ message.
+   - Input button.
+   - Automation to trigger shell_command on press of button.
+   - Sensor for retrieving the last row of the log-file for `github_push.sh`.
+   - Triggers for keeping track of domain-entities.
 
 ## Resource - Lovelace Card Mod
 
@@ -299,7 +310,7 @@ Perform the following:
 7. Check logs for errors.
    - If errors, find the problem.
 
-## Package - Home Assistant system
+## Package - Home Assistant system - Database sizes
 
 We want to keep track of the following for the HA system:
 - Database sizes.
@@ -307,12 +318,12 @@ We want to keep track of the following for the HA system:
 
 Perform the following:
 
-1. Through the `File Editor` add-on, create the file `/config/packages/ha_system.yaml`
+1. Through the `File Editor` add-on, create the file `/config/packages/database_table_sizes.yaml`
 2. Through the `File Editor` add-on, edit the file [/config/configuration.yaml](https://github.com/slittorin/home-assistant-config/blob/master/configuration.yaml) and after `  packages:` (mind the spaces):
 ```yaml
-    ha_system: !include packages/ha_system.yaml
+    database_table_sizes: !include packages/database_table_sizes.yaml
 ```
-3. Through the `File Editor` add-on, edit the file [/config/packages/ha_system.yaml](https://github.com/slittorin/home-assistant-config/blob/master/packages/ha_system.yaml) and add the following:
+3. Through the `File Editor` add-on, edit the file [/config/packages/database_table_sizes.yaml](https://github.com/slittorin/home-assistant-config/blob/master/packages/database_table_sizes.yaml) and add the following:
    - Sensor for MariaDB size.
    - Triggers for keeping track of domain-entities.
 
