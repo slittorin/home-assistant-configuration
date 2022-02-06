@@ -343,7 +343,9 @@ Perform the following:
 Note that we need to add senors manually for domains that are not present, see [Regular maintenance - Add domain sensors](https://github.com/slittorin/home-assistant-maintenance#add-domain-sensors).
 
 We want to keep track of the following for the HA system:
-- Number and name of domains.
+- Number of all domains.
+- List of all domains.
+- Number of entities.
 - Number of entities per domain.
 
 1. Through the `File Editor` add-on, create the file `/config/packages/domains_entities.yaml`
