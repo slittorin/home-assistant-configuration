@@ -61,6 +61,11 @@ Secondarily I would like to be able to control and perform automation activities
       - Note that legacy configuration format (see modern above), do not support `state_class`.
     - Utilize `unit of measurement` for all entities/sensors. Standard units is found [here](https://github.com/home-assistant/core/blob/dev/homeassistant/const.py).
     - For power/consumption related sensors one may also look to add integration [Powercalc](https://github.com/bramstroker/homeassistant-powercalc), specifically for binary sensors.
+- Scheduled tasks (triggers, automation, backups):
+  - Spread out evenly to not put load on specific times (includes towards databases).
+  - Use the following as base:
+    - 00:01 - 00:59 - Backup timeslot.
+    - 01:00 - 01:58 - Triggers, automations and similar.
 
 # Resources, Packages and Integrations
 
