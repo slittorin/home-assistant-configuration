@@ -310,7 +310,7 @@ Perform the following:
 7. Check logs for errors.
    - If errors, find the problem.
 
-## Package - Home Assistant system - Database sizes
+## Package - Home Assistant system - Database and tables data
 
 We want to keep track of the following for the HA system:
 - Recorder database size (in MariaDB), each 30 minutes.
