@@ -10,6 +10,7 @@
   - [Resource - Lovelace Card Mod](https://github.com/slittorin/home-assistant-configuration#resource---lovelace-card-mod)
   - [Resource - Apex Charts Card](https://github.com/slittorin/home-assistant-configuration#resource---apex-charts-card)
   - [Package - Home Assistant - Database and tables data](https://github.com/slittorin/home-assistant-configuration#package---home-assistant-system---database-and-tables-data)
+  - [Package - Home Assistant - Domains and entities](https://github.com/slittorin/home-assistant-configuration/blob/main/README.md#package---home-assistant-system---domains-and-entities)
   - [Package - Weather](https://github.com/slittorin/home-assistant-configuration#package---weather)
   - [Package - Nordpool](https://github.com/slittorin/home-assistant-configuration#package---nordpool)
   - [Package - SMA](https://github.com/slittorin/home-assistant-configuration#package---sma)
