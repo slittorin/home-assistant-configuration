@@ -337,6 +337,16 @@ Perform the following:
 ```
 3. Through the `File Editor` add-on, edit the file [/config/packages/database_table_sizes.yaml](https://github.com/slittorin/home-assistant-config/blob/master/packages/database_table_sizes.yaml) and add the sensors according to above.
 
+## Package - Home Assistant system - Domains and entities
+
+Note that we need to add senors manually for domains.
+
+
+
+We want to keep track of the following for the HA system:
+- Number and name of domains.
+- Number of entities per domain.
+
 ## Package - Weather
 
 We want to have a more accurate weather integration for Sweden than the built in, so we utilize SMHI.\
