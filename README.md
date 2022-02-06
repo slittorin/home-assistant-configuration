@@ -351,7 +351,7 @@ We want to keep track of the following for the HA system:
 ```yaml
     domains_entities: !include packages/domains_entities.yaml
 ```
-3. Through the `File Editor` add-on, edit the file [/config/packages/domains_entities.yaml](https://github.com/slittorin/home-assistant-config/blob/master/packages/domains_sensors.yaml) and add the sensors according to above.
+3. Through the `File Editor` add-on, edit the file [/config/packages/domains_entities.yaml](https://github.com/slittorin/home-assistant-config/blob/master/packages/domains_entities.yaml) and add the sensors according to above.
 
 ## Package - Weather
 
