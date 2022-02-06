@@ -340,13 +340,18 @@ Perform the following:
 
 ## Package - Home Assistant system - Domains and entities
 
-Note that we need to add senors manually for domains.
-
-
+Note that we need to add senors manually for domains that are not present, see [Regular maintenance - Add domain sensors](https://github.com/slittorin/home-assistant-maintenance#add-domain-sensors).
 
 We want to keep track of the following for the HA system:
 - Number and name of domains.
 - Number of entities per domain.
+
+1. Through the `File Editor` add-on, create the file `/config/packages/domains_entities.yaml`
+2. Through the `File Editor` add-on, edit the file [/config/configuration.yaml](https://github.com/slittorin/home-assistant-config/blob/master/configuration.yaml) and after `  packages:` (mind the spaces):
+```yaml
+    domains_entities: !include packages/domains_entities.yaml
+```
+3. Through the `File Editor` add-on, edit the file [/config/packages/domains_entities.yaml](https://github.com/slittorin/home-assistant-config/blob/master/packages/domains_sensors.yaml) and add the sensors according to above.
 
 ## Package - Weather
 
