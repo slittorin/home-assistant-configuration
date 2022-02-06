@@ -313,8 +313,20 @@ Perform the following:
 ## Package - Home Assistant system - Database sizes
 
 We want to keep track of the following for the HA system:
-- Database sizes.
-- Number of objects managed by Home Assistant.
+- Recorder database size (in MariaDB), each 30 minutes.
+- Size of the main tables, each 30 minutes:
+  - states
+  - events
+  - statistics
+  - statistics_short_term
+- To keep track of the earlies data in the tables, each day:
+  - First created data for the main tables:
+    - states
+    - events
+    - statistics
+    - statistics_short_term
+- To keep track of entities with most rows in the table states, each day:
+  - 30 entities with most rows.
 
 Perform the following:
 
@@ -323,9 +335,7 @@ Perform the following:
 ```yaml
     database_table_sizes: !include packages/database_table_sizes.yaml
 ```
-3. Through the `File Editor` add-on, edit the file [/config/packages/database_table_sizes.yaml](https://github.com/slittorin/home-assistant-config/blob/master/packages/database_table_sizes.yaml) and add the following:
-   - Sensor for MariaDB size.
-   - Triggers for keeping track of domain-entities.
+3. Through the `File Editor` add-on, edit the file [/config/packages/database_table_sizes.yaml](https://github.com/slittorin/home-assistant-config/blob/master/packages/database_table_sizes.yaml) and add the sensors according to above.
 
 ## Package - Weather
 
