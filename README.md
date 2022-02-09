@@ -11,7 +11,7 @@
   - [Resource - Apex Charts Card](https://github.com/slittorin/home-assistant-configuration#resource---apex-charts-card)
   - [Package - Home Assistant - Database and tables data](https://github.com/slittorin/home-assistant-configuration#package---home-assistant-system---database-and-tables-data)
   - [Package - Home Assistant - Domains and entities](https://github.com/slittorin/home-assistant-configuration/blob/main/README.md#package---home-assistant-system---domains-and-entities)
-  - [Package - HACS](https://github.com/slittorin/home-assistant-configuration#HACS)
+  - [Package - HACS](https://github.com/slittorin/home-assistant-configuration#package---hacs)
   - [Package - Weather](https://github.com/slittorin/home-assistant-configuration#package---weather)
   - [Package - Nordpool](https://github.com/slittorin/home-assistant-configuration#package---nordpool)
   - [Package - SMA](https://github.com/slittorin/home-assistant-configuration#package---sma)
@@ -363,7 +363,14 @@ We want to keep track of the following for the HA system:
 
 ## Package - HACS
 
-We want to have a more accurate weather integration for Sweden than the built in, so we utilize SMHI.\
+We want to be able to download more from Home Assistant Community Store (HACS).\
+HACS is an integration that needs to be installed according to [HACS site](https://hacs.xyz/).
+
+Follow the instructions for Supervisor install:
+1. Open `Terminal` and go to directory `/config`:
+   - Run the following command: `wget -O - https://get.hacs.xyz | bash -`.
+   - The installation should state that installation is complete, and that HA can be restarted.
+2. Restart the Home Assistant server under `Server management`.
 
 ## Package - Weather
 
