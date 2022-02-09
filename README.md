@@ -378,6 +378,7 @@ Follow the instructions for Supervisor install:
      - In my case, I utilized my already existing github account to retrieve the token.
 6. On Integration page, click on `Configure` on the HACS integration:
    - Enabled AppDaemon and NetDaemon apps.
+7. Restart HA.
 
 ## Package - Weather
 
@@ -418,20 +419,8 @@ Perform the following:
 
 We want to have gather the current cost for electricity in my region.
 
-1. Through the `File Editor` add-on, under `/config/custom_components` create the following directories:
-   - `nordpool`.
-   - `nordpool/download`.
-
-1. Download the custom component:
-   - Go to [HA Customer component - Nordpool](https://github.com/custom-components/nordpool).
-   - Choose `Code` -> `Download as ZIP` to download the code.
-   - Through the `File Editor` add-on, under `/config/custom_components` create the following directories:
-     - `nordpool`.
-     - `nordpool/download`.
-   - Through the `File Editor` add-on, upload the zip-file to the `nordpool/download` directory.
-   - Logon with ssh to the Home Assistant server (user is  `root`):
-     - In directory `/config/custom_components/nordpool/download` run the command `unzip nordpool-master.zip`.
-     - Copy the files in directory `/config/custom_components/nordpool/download/nordpool-master/custom_components/nordpool` to `/config/custom_components/nordpool`.
+1. Through `HACS` in the menu:
+   - Add Integration: `Nordpool`.
 2. Restart the Home Assistant server under `Server management`.
    - This may take a while as the custom component is installed.
 3. Through the `File Editor` add-on, create the file `/config/packages/tariff_electrical.yaml`
