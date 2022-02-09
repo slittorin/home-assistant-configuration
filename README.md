@@ -371,6 +371,8 @@ Follow the instructions for Supervisor install:
    - Run the following command: `wget -O - https://get.hacs.xyz | bash -`.
    - The installation should state that installation is complete, and that HA can be restarted.
 2. Restart the Home Assistant server under `Server management`.
+3. Clear your browser cache, yep, important!.
+4. Reconnect to HA.
 
 ## Package - Weather
 
