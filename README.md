@@ -11,7 +11,6 @@
   - [Resource - Apex Charts Card](https://github.com/slittorin/home-assistant-configuration#resource---apex-charts-card)
   - [Package - Home Assistant - Database and tables data](https://github.com/slittorin/home-assistant-configuration#package---home-assistant-system---database-and-tables-data)
   - [Package - Home Assistant - Domains and entities](https://github.com/slittorin/home-assistant-configuration/blob/main/README.md#package---home-assistant-system---domains-and-entities)
-  - [Package - HACS](https://github.com/slittorin/home-assistant-configuration#package---hacs)
   - [Package - Weather](https://github.com/slittorin/home-assistant-configuration#package---weather)
   - [Package - Nordpool](https://github.com/slittorin/home-assistant-configuration#package---nordpool)
   - [Package - SMA](https://github.com/slittorin/home-assistant-configuration#package---sma)
@@ -360,25 +359,6 @@ We want to keep track of the following for the HA system:
     domains_entities: !include packages/domains_entities.yaml
 ```
 3. Through the `File Editor` add-on, edit the file [/config/packages/domains_entities.yaml](https://github.com/slittorin/home-assistant-config/blob/master/packages/domains_entities.yaml) and add the sensors according to above.
-
-## Package - HACS
-
-We want to be able to download more from Home Assistant Community Store (HACS).\
-HACS is an integration that needs to be installed according to [HACS site](https://hacs.xyz/).
-
-Follow the instructions for Supervisor install:
-1. Open `Terminal` and go to directory `/config`:
-   - Run the following command: `wget -O - https://get.hacs.xyz | bash -`.
-   - The installation should state that installation is complete, and that HA can be restarted.
-2. Restart the Home Assistant server under `Server management`.
-3. Clear your browser cache, yep, important!.
-4. Reconnect to HA.
-5. Add the integration 'HACS':
-   - Follow the instructions for [Configuration of HACS](https://hacs.xyz/docs/configuration/basic).
-     - In my case, I utilized my already existing github account to retrieve the token.
-6. On Integration page, click on `Configure` on the HACS integration:
-   - Enabled AppDaemon and NetDaemon apps.
-7. Restart HA.
 
 ## Package - Weather
 
