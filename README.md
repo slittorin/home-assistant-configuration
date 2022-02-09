@@ -11,6 +11,7 @@
   - [Resource - Apex Charts Card](https://github.com/slittorin/home-assistant-configuration#resource---apex-charts-card)
   - [Package - Home Assistant - Database and tables data](https://github.com/slittorin/home-assistant-configuration#package---home-assistant-system---database-and-tables-data)
   - [Package - Home Assistant - Domains and entities](https://github.com/slittorin/home-assistant-configuration/blob/main/README.md#package---home-assistant-system---domains-and-entities)
+  - [Package - HACS](https://github.com/slittorin/home-assistant-configuration#HACS)
   - [Package - Weather](https://github.com/slittorin/home-assistant-configuration#package---weather)
   - [Package - Nordpool](https://github.com/slittorin/home-assistant-configuration#package---nordpool)
   - [Package - SMA](https://github.com/slittorin/home-assistant-configuration#package---sma)
@@ -360,6 +361,10 @@ We want to keep track of the following for the HA system:
 ```
 3. Through the `File Editor` add-on, edit the file [/config/packages/domains_entities.yaml](https://github.com/slittorin/home-assistant-config/blob/master/packages/domains_entities.yaml) and add the sensors according to above.
 
+## Package - HACS
+
+We want to have a more accurate weather integration for Sweden than the built in, so we utilize SMHI.\
+
 ## Package - Weather
 
 We want to have a more accurate weather integration for Sweden than the built in, so we utilize SMHI.\
@@ -398,6 +403,10 @@ Perform the following:
 ## Package - Nordpool
 
 We want to have gather the current cost for electricity in my region.
+
+1. Through the `File Editor` add-on, under `/config/custom_components` create the following directories:
+   - `nordpool`.
+   - `nordpool/download`.
 
 1. Download the custom component:
    - Go to [HA Customer component - Nordpool](https://github.com/custom-components/nordpool).
