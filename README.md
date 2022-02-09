@@ -373,6 +373,9 @@ Follow the instructions for Supervisor install:
 2. Restart the Home Assistant server under `Server management`.
 3. Clear your browser cache, yep, important!.
 4. Reconnect to HA.
+5. Follow the instructions for [Configuration of HACS](https://hacs.xyz/docs/configuration/basic).
+   - In my case, I utilized my alread existing github account to retrieve the token.
+   - 
 
 ## Package - Weather
 
