@@ -6,6 +6,7 @@
 - [Generic information](https://github.com/slittorin/home-assistant-configuration#generic-information)
 - [Governing principles](https://github.com/slittorin/home-assistant-configuration#governing-principles)
 - [Resources, Packages and Integrations](https://github.com/slittorin/home-assistant-configuration#resources-packages-and-integrations)
+  - [Backup](https://github.com/slittorin/home-assistant-configuration#backup)
   - [Github Push](https://github.com/slittorin/home-assistant-configuration#github-push)
   - [Resource - Lovelace Card Mod](https://github.com/slittorin/home-assistant-configuration#resource---lovelace-card-mod)
   - [Resource - Apex Charts Card](https://github.com/slittorin/home-assistant-configuration#resource---apex-charts-card)
@@ -68,6 +69,23 @@ Secondarily I would like to be able to control and perform automation activities
     - 01:00 - 01:58 - Triggers, automations and similar.
 
 # Resources, Packages and Integrations
+
+## Backup
+
+We want to have the following backup-scheme:
+- Daily backups Monday through Saturday, kept for 7 days.
+- Weekly backups on Sunday, kept for 8 weeks (56+1 days).
+
+We could have utilized a standard automation scheme, and run a shell-script daily to remove older files, however since the filenaming-convention on file-level för backup files are not readable, we instead utilize a backup-integration [auto-backup](https://github.com/jcwillox/hass-auto-backup) that will take care of the work for us.
+
+1. Through `HACS` in the menu:
+   - Add Integration: `Auto Backup` by `@jcwillox`.
+2. Restart the Home Assistant server under `Server management`.
+   - This may take a while as the custom component is installed.
+3. Go to `Configuration` -> `Devices and services` and add Integration `auto backup`.
+4. Through the `File Editor` add-on, edit the file [/config/automations.yaml](https://github.com/slittorin/home-assistant-config/blob/master/automations.yaml) and add:
+   - Daily backup scheme according above.
+   - Weekly backup schema according above.
 
 ## Github Push
 
@@ -280,41 +298,23 @@ exit ${exit_code}
 
 ## Resource - Lovelace Card Mod
 
-We want to tweak lovelace with CSS styles to various elements of the Home Assistant frontend.
+We want to tweak lovelace with CSS styles to various elements of the Home Assistant frontend.\
+Therefore we add [Card Mod](https://github.com/thomasloven/lovelace-card-mod).
 
 Perform the following:
 
-1. Download the latest `card-mod.js` file from [Github Lovelace Card Mod](https://github.com/thomasloven/lovelace-card-mod)
-2. Through the `File Editor` add-on, save `card-mod.js` in `/config/www`.
-3. Through the `File Editor` add-on, edit the file [/config/configuration.yaml](https://github.com/slittorin/home-assistant-config/blob/master/configuration.yaml) and add:
-```yaml
-frontend:
-  extra_module_url:
-    - /local/card-mod.js
-```
-4. Go to `Configiuration` -> `Dashboards` -> `Resources`:
-   - Press `Add resource`:
-     - For `URL` type `/local/card-mod.js`.
-     - For `Resource type` choose `Javascript Module`.
-6. Check configuration and restart Home Assistant.
-7. Check logs for errors.
-   - If errors, find the problem.
+1. Through `HACS` in the menu:
+   - Add Frontend: `Card Mod` by `@thomasloven`.
 
 ## Resource - Apex Charts Card
 
-We want to be able to add more customized graph cards.
+We want to be able to add more customized graph cards.\
+Therefore we add [Apex Charts](https://github.com/RomRider/apexcharts-card).
 
 Perform the following:
 
-1. Download the latest `apexcharts-card.js` file from [Github Apex Charts](https://github.com/RomRider/apexcharts-card)
-2. Through the `File Editor` add-on, save `apexcharts-card.js` in `/config/www`.
-4. Go to `Configiuration` -> `Dashboards` -> `Resources`:
-   - Press `Add resource`:
-     - For `URL` type `/local/apexcharts-card.js`.
-     - For `Resource type` choose `Javascript Module`.
-6. Check configuration and restart Home Assistant.
-7. Check logs for errors.
-   - If errors, find the problem.
+1. Through `HACS` in the menu:
+   - Add Frontend: `apex-chart-card` by `@RomRider`.
 
 ## Package - Home Assistant system - Database and tables data
 
