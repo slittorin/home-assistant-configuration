@@ -105,7 +105,7 @@ Persistence can be made according to the following:
         data_template:
           entity_id: input_number.electrical_consumption_intake_hour_snapshot_persistent
           value: "{{ states('sensor.electrical_consumption_intake_hour_snapshot') }}"
-    ```yaml
+    ```
   - Use template sensors and Jinja2 to check if sensor value is 'unknown' or 'undefined' and retrieve the value from the input sensor:
     ```yaml
     - name:  electrical_solar_production_hour
@@ -118,7 +118,7 @@ Persistence can be made according to the following:
         {% if (snapshot == 'unknown' or snapshot == 'undefined') %}
         {%   set snapshot = persistent_snapshot %}
         {% endif %}
-    ```yaml
+    ```
 
 # Resources, Packages and Integrations
 
