@@ -90,7 +90,7 @@ Persistence can be made according to the following:
       event: start
     ```
 - For sensors:
-  - Create `input_number` of `input_text sensor` to store sensor values (input sensors are persistent over restarts).
+  - Create `input_number` of `input_text` sensor to store sensor values (input sensors are persistent over restarts).
   - Add automation to update input sensor based on state changes:
     ```yaml
     automation:
@@ -106,7 +106,7 @@ Persistence can be made according to the following:
           entity_id: input_number.electrical_consumption_intake_hour_snapshot_persistent
           value: "{{ states('sensor.electrical_consumption_intake_hour_snapshot') }}"
     ```
-  - Use template sensors and Jinja2 to check if sensor value is 'unknown' or 'undefined' and retrieve the value from the input sensor:
+  - Use template sensors and Jinja2 to check if sensor value is `unknown` or `undefined` and retrieve the value from the input sensor:
     ```yaml
     - name:  electrical_solar_production_hour
       device_class: 'energy'
