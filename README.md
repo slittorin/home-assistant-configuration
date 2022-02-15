@@ -90,8 +90,18 @@ Persistence can be made according to the following:
       event: start
     ```
 - For sensors:
-  - Create `input_number` of `input_text` sensor to store sensor values (input sensors are persistent over restarts).
-  - Add automation to update input sensor based on state changes:
+  - Create `input_number` of `input_text` sensor to store sensor values (input sensors are persistent over restarts):
+    ```yaml
+    input_number:
+      electrical_consumption_intake_hour_snapshot_persistent:
+        name: 'Persistent for electrical_consumption_intake_hour_snapshot'
+        icon: mdi:database
+        mode: box
+        min: 0
+        max: 10000000
+        unit_of_measurement: "kWh"
+    ```
+  - Add automation to update input sensor based on (original/tracked) state changes:
     ```yaml
     automation:
     # For persistence, On every state change for electrical_consumption_intake_hour_snapshot, set input_number sensor.
