@@ -43,6 +43,7 @@ Secondarily I would like to be able to control and perform automation activities
   - Do not create more sensors than needed. Rely on the standard integration entities/attributes.
     - Since states (and therefore also InfluxDB states) do not track attribute changes, make sure to create sensors for the attributes you want to track.
       - And of course, where required, create new sensors if attributes cannot be utilized by templates, triggers or other.
+  - When retrieving states of sensors, in Jinja2, make sure to check if the value is `unknown` or `undefined`.
   - Use [Modern configuration format](https://www.home-assistant.io/integrations/template/#configuration-variables).
   - Follow the [Style guide](https://developers.home-assistant.io/docs/documenting/yaml-style-guide/).
   - Naming convention for `name:` and `unique_id:`of Sensor/Entity ID (and where required name) shall follow the naming standard:
