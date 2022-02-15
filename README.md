@@ -113,8 +113,8 @@ Persistence can be made according to the following:
       unit_of_measurement: 'kWh'
       state_class: measurement
       state: >
-        {% set persistent_snapshot = states('input_number.electrical_solar_production_hour_snapshot_persistent') %}
-        {% set snapshot = states('sensor.electrical_solar_production_hour_snapshot') %}
+        {% set persistent_snapshot = states('input_number.electrical_consumption_intake_hour_snapshot_persistent') %}
+        {% set snapshot = states('sensor.electrical_consumption_intake_hour_snapshot') %}
         {% if (snapshot == 'unknown' or snapshot == 'undefined') %}
         {%   set snapshot = persistent_snapshot %}
         {% endif %}
