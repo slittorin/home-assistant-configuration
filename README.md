@@ -38,7 +38,7 @@ Secondarily I would like to be able to control and perform automation activities
 
 - Setup HA with [Home Assistance setup](https://github.com/slittorin/home-assistant-setup).
 
-#### Styles, naming convention, device and state class, and unit of measurement:
+#### Styles, naming convention, device and state class, and unit of measurement
 - Configuration-files/yaml:
   - Do not create more sensors than needed. Rely on the standard integration entities/attributes.
     - Since states (and therefore also InfluxDB states) do not track attribute changes, make sure to create sensors for the attributes you want to track.
@@ -68,6 +68,57 @@ Secondarily I would like to be able to control and perform automation activities
   - Use the following as base:
     - 00:01 - 00:59 - Backup timeslot.
     - 01:00 - 01:58 - Triggers, automations and similar.
+
+#### Persistence
+
+Since Home Assistant is a event/state machine there will be some sensors that will not survive a restart.\
+This is due to the architectural design and governing principles on how the platform works.
+
+Therefore all integrations must be able to support persistence over restart, dependent on the nature of the integration what the sensors measure.\
+It also means that manually added sensors/entities will need to be adapted to support persistence over reboots.
+
+Note must be taken on the following:
+- Adding persistence will not only add complexity, but may also affect measurement of statistics and so forth, therefore try not to add persistence.
+  - Sensors that for instance are used to track sum of values over time, cannot simply be made persistent, since if we add persistence, it will add value to the sum that was not intended.
+- Snapshots are good candidates to made persistent.
+
+Persistence can be made according to the following:
+- For automations:
+  - Add the following to automation triggers to allow the trigger to be fired after restart of HA:
+    ```yaml
+    - platform: homeassistant
+      event: start
+    ```
+- For sensors:
+  - Create `input_number` of `input_text sensor` to store sensor values (input sensors are persistent over restarts).
+  - Add automation to update input sensor based on state changes:
+    ```yaml
+    automation:
+    # For persistence, On every state change for electrical_consumption_intake_hour_snapshot, set input_number sensor.
+    - id: automation_electrical_consumption_intake_hour_snapshot
+      alias: 'Automation for persistance of electrical_consumption_intake_hour_snapshot'
+      trigger:
+        - platform: state
+          entity_id: sensor.electrical_consumption_intake_hour_snapshot
+      action:
+        service: input_number.set_value
+        data_template:
+          entity_id: input_number.electrical_consumption_intake_hour_snapshot_persistent
+          value: "{{ states('sensor.electrical_consumption_intake_hour_snapshot') }}"
+    ```yaml
+  - Use template sensors and Jinja2 to check if sensor value is 'unknown' or 'undefined' and retrieve the value from the input sensor:
+    ```yaml
+    - name:  electrical_solar_production_hour
+      device_class: 'energy'
+      unit_of_measurement: 'kWh'
+      state_class: measurement
+      state: >
+        {% set persistent_snapshot = states('input_number.electrical_solar_production_hour_snapshot_persistent') %}
+        {% set snapshot = states('sensor.electrical_solar_production_hour_snapshot') %}
+        {% if (snapshot == 'unknown' or snapshot == 'undefined') %}
+        {%   set snapshot = persistent_snapshot %}
+        {% endif %}
+    ```yaml
 
 # Resources, Packages and Integrations
 
