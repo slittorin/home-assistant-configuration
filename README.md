@@ -9,7 +9,7 @@
   - [Backup](https://github.com/slittorin/home-assistant-configuration#backup)
   - [Github Push](https://github.com/slittorin/home-assistant-configuration#github-push)
   - [Resource - Lovelace Card Mod](https://github.com/slittorin/home-assistant-configuration#resource---lovelace-card-mod)
-  - [Resource - Layout Card](https://github.com/slittorin/home-assistant-configuration/blob/main/README.md#resource---layout-card)
+  - [Resource - Layout Card](https://github.com/slittorin/home-assistant-configuration#resource---layout-card)
   - [Resource - Apex Charts Card](https://github.com/slittorin/home-assistant-configuration#resource---apex-charts-card)
   - [Package - Home Assistant - Database and tables data](https://github.com/slittorin/home-assistant-configuration#package---home-assistant-system---database-and-tables-data)
   - [Package - Home Assistant - Domains and entities](https://github.com/slittorin/home-assistant-configuration/blob/main/README.md#package---home-assistant-system---domains-and-entities)
