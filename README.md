@@ -382,19 +382,17 @@ Perform the following:
 
 We want to keep track of the following for the HA system:
 - Recorder database size (in MariaDB), each 30 minutes.
-- Size of the main tables, each 30 minutes:
+- Size of the main tables, each hour:
   - states
   - events
   - statistics
   - statistics_short_term
 - To keep track of the earlies data in the tables, each day:
-  - First created data for the main tables:
+  - First created data (date) for the main tables:
     - states
     - events
     - statistics
     - statistics_short_term
-- To keep track of entities with most rows in the table states, each day:
-  - 30 entities with most rows.
 
 Perform the following:
 
