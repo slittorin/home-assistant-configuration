@@ -368,6 +368,16 @@ Perform the following:
 1. Through `HACS` in the menu:
    - Add Frontend: `Card Mod` by `@thomasloven`.
 
+## Resource - Layout Card
+
+We want to be able to customize cards.\
+Therefore we add [Layout Card](https://github.com/thomasloven/lovelace-layout-card).
+
+Perform the following:
+
+1. Through `HACS` in the menu:
+   - Add Frontend: `layout-card` by `@thomasloven`.
+
 ## Resource - Apex Charts Card
 
 We want to be able to add more customized graph cards.\
