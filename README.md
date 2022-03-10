@@ -338,7 +338,7 @@ exit ${exit_code}
 ```
 7. Through the 'SSH & Web terminal' run the following in the `/config/script` directory:
    - `chmod ug+x github_push.sh`.
-   - `./github_push.sh`-
+   - `./github_push.sh`.
 8. Check the log-file `/config/logs/github_push.log`.
    - Isolate if there are errors, and if needed isolate the problem.
 9. Go to the github repositor and check that all files has been properly pushed.
