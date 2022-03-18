@@ -392,12 +392,12 @@ Perform the following:
 ## Package - Home Assistant system - Database and tables data
 
 We want to keep track of the following for the HA system:
-- Recorder database size (in MariaDB), each 30 minutes.
-- Size of the main tables, each hour:
-  - states
-  - events
-  - statistics
-  - statistics_short_term
+- Recorder database size (in MariaDB), each 6 hour (was first 30 minutes, then 1 hour, thereafter updated to 6 hour 2022-03-17, since these takes quite a load on the server, and also is not required that often).
+  - Size of the main tables:
+    - states
+    - events
+    - statistics
+    - statistics_short_term
 - To keep track of the earlies data in the tables, each day:
   - First created data (date) for the main tables:
     - states
