@@ -580,6 +580,10 @@ exit ${exit_code}
 
 See also [Github Push Visualization](https://github.com/slittorin/home-assistant-visualization#github-push).
 
+## Git for Grafana
+
+xxx
+
 ## Resource - Lovelace Card Mod
 
 We want to tweak lovelace with CSS styles to various elements of the Home Assistant frontend.\
