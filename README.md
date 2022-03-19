@@ -360,6 +360,8 @@ exit 0
    - Automation to trigger shell_command on press of button.
    - Sensor for retrieving the last row of the log-file for `copy_backup.sh`.
 
+see also [Github Copy to server1 in Visualizations - Dashboard Home Assistant](https://github.com/slittorin/home-assistant-visualization#copy-to-server1).
+
 ## Github Push
 
 We want to utilize Github Push instead of Pull as the original files are to reside on my HA-device.\
