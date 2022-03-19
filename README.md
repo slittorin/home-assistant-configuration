@@ -928,6 +928,8 @@ XXX
 
 Note that we need to add senors manually for domains that are not present, see [Regular maintenance - Add domain sensors](https://github.com/slittorin/home-assistant-maintenance#add-domain-sensors).
 
+See also [Number of domains and entities in Visualizations - Dashboard Home Assistant](https://github.com/slittorin/home-assistant-visualization#number-of-domains-and-entities).
+
 We want to keep track of the following for the HA system:
 - Number of all domains.
 - List of all domains.
@@ -948,6 +950,8 @@ We want to have a more accurate weather integration for Sweden than the built in
 We want to keep track of the following for the HA system:
 - Sensor data from the integration.
 - Sun states, including different time/elevation over the horizon to be able to utilize that for trending for the solar panels (SMA).
+
+See also [XXX in Visualizations - Dashboard Home Assistant](https://github.com/slittorin/home-assistant-visualization#number-of-domains-and-entities).
 
 Perform the following:
 
