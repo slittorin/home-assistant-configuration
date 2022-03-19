@@ -361,7 +361,7 @@ exit 0
    - Automation to trigger shell_command on press of button.
    - Sensor for retrieving the last row of the log-file for `/config/logs/copy_backup.log`.
 
-see also [Github Copy to server1 in Visualizations - Dashboard Home Assistant](https://github.com/slittorin/home-assistant-visualization#copy-to-server1).
+See also [Github Copy to server1 in Visualizations - Dashboard Home Assistant](https://github.com/slittorin/home-assistant-visualization#copy-to-server1).
 
 ## Github Push
 
@@ -704,6 +704,8 @@ exit 0
    - Input button.
    - Automation to trigger shell_command on press of button.
    - Sensor for retrieving the last row of the log-file `/config/logs/grafana_github.log`.
+
+See also [Git for Grafana in Visualizations - Dashboard Home Assistant](https://github.com/slittorin/home-assistant-visualization#git-for-grafana).
 
 ## Resource - Lovelace Card Mod
 
