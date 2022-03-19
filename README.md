@@ -149,6 +149,12 @@ We could have utilized a standard automation scheme, and run a shell-script dail
 4. Through the `File Editor` add-on, edit the file [/config/automations.yaml](https://github.com/slittorin/home-assistant-config/blob/master/automations.yaml) and add:
    - Daily backup scheme according above.
    - Weekly backup schema according above.
+5. For the Auto backup integration:
+   - Change backup timeout to 60 minutes.
+
+## Backup files copy to server1
+
+In case we get a server corruption, we also want to copy the files to
 
 ## Github Push
 
@@ -254,10 +260,11 @@ else
 fi
 
 # Variables:
+config_dir="/config"
 base_dir="/config/scripts"
 log_dir="/config/logs"
-config_dir="/config"
 logfile="${log_dir}/github_push.log"
+logfile_tmp="${log_dir}/github_push.tmp"
 
 _initialize() {
     touch "${logfile}"
@@ -334,6 +341,12 @@ _finalize() {
 _initialize >> "${logfile}" 2>&1
 _github_push >> "${logfile}" 2>&1
 _finalize >> "${logfile}" 2>&1
+
+# Limit the number of rows in the logfile
+tail -n1000 ${logfile} > ${logfile_tmp}
+rm ${logfile}
+mv ${logfile_tmp} ${logfile}
+
 exit ${exit_code}
 ```
 7. Through the 'SSH & Web terminal' run the following in the `/config/script` directory:
@@ -358,6 +371,8 @@ exit ${exit_code}
    - Automation to trigger shell_command on press of button.
    - Sensor for retrieving the last row of the log-file for `github_push.sh`.
    - Triggers for keeping track of domain-entities.
+
+See also [Github Push Visualization](https://github.com/slittorin/home-assistant-visualization#github-push).
 
 ## Resource - Lovelace Card Mod
 
