@@ -152,7 +152,7 @@ We could have utilized a standard automation scheme, and run a shell-script dail
 5. For the Auto backup integration:
    - Change backup timeout to 60 minutes.
 
-## Backup files copy to server1
+## Copy backup files to server1
 
 In case we get a server corruption, we also want to copy the files to
 
