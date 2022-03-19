@@ -14,6 +14,7 @@
   - [Resource - Layout Card](https://github.com/slittorin/home-assistant-configuration#resource---layout-card)
   - [Resource - Apex Charts Card](https://github.com/slittorin/home-assistant-configuration#resource---apex-charts-card)
   - [Package - Home Assistant - Database and tables data](https://github.com/slittorin/home-assistant-configuration#package---home-assistant-system---database-and-tables-data)
+  - [Package - Home Assistant - InfluxDB size](https://github.com/slittorin/home-assistant-configuration/blob/main/README.md#package---home-assistant-system---influxdb-size)
   - [Package - Home Assistant - Domains and entities](https://github.com/slittorin/home-assistant-configuration/blob/main/README.md#package---home-assistant-system---domains-and-entities)
   - [Package - Weather](https://github.com/slittorin/home-assistant-configuration#package---weather)
   - [Package - Nordpool](https://github.com/slittorin/home-assistant-configuration#package---nordpool)
