@@ -8,6 +8,7 @@
 - [Resources, Packages and Integrations](https://github.com/slittorin/home-assistant-configuration#resources-packages-and-integrations)
   - [Backup](https://github.com/slittorin/home-assistant-configuration#backup)
   - [Copy backup files to server1](https://github.com/slittorin/home-assistant-configuration#copy-backup-files-to-server1)
+  - [Git for Grafana](https://github.com/slittorin/home-assistant-configuration#git-for-grafana).
   - [Github Push](https://github.com/slittorin/home-assistant-configuration#github-push)
   - [Resource - Lovelace Card Mod](https://github.com/slittorin/home-assistant-configuration#resource---lovelace-card-mod)
   - [Resource - Layout Card](https://github.com/slittorin/home-assistant-configuration#resource---layout-card)
@@ -351,14 +352,14 @@ exit 0
   copy_backup: /config/scripts/copy_backup.sh pi@192.168.2.30 /srv/ha/backup &
 ```
 6. Through the `File Editor` add-on, create the file `/config/packages/copy-backup.yaml`
-2. Through the `File Editor` add-on, edit the file [/config/configuration.yaml](https://github.com/slittorin/home-assistant-config/blob/master/configuration.yaml) and after `  packages:` (mind the spaces):
+7. Through the `File Editor` add-on, edit the file [/config/configuration.yaml](https://github.com/slittorin/home-assistant-config/blob/master/configuration.yaml) and after `  packages:` (mind the spaces):
 ```yaml
     copy_backup: !include packages/backup.yaml
 ```
-3. Through the `File Editor` add-on, edit the file [/config/packages/backup.yaml](https://github.com/slittorin/home-assistant-config/blob/master/packages/backup.yaml) and add the following:
+8. Through the `File Editor` add-on, edit the file [/config/packages/backup.yaml](https://github.com/slittorin/home-assistant-config/blob/master/packages/backup.yaml) and add the following:
    - Input button.
    - Automation to trigger shell_command on press of button.
-   - Sensor for retrieving the last row of the log-file for `copy_backup.sh`.
+   - Sensor for retrieving the last row of the log-file for `/config/logs/copy_backup.log`.
 
 see also [Github Copy to server1 in Visualizations - Dashboard Home Assistant](https://github.com/slittorin/home-assistant-visualization#copy-to-server1).
 
@@ -575,14 +576,134 @@ exit ${exit_code}
    - Input text for committ message.
    - Input button.
    - Automation to trigger shell_command on press of button.
-   - Sensor for retrieving the last row of the log-file for `github_push.sh`.
+   - Sensor for retrieving the last row of the log-file for `/config/logs/`github_push..log`.
    - Triggers for keeping track of domain-entities.
 
 See also [Github Push Visualization](https://github.com/slittorin/home-assistant-visualization#github-push).
 
 ## Git for Grafana
 
-xxx
+Besides backup of Grafana, we also want to push the dashboards to Github.
+This to have them also backed up there, and allow them to be shared.
+
+Pre-requisite is that the setup for [Git for Grafana](https://github.com/slittorin/home-assistant-setup#git-for-grafana) is done.
+
+Perform the following:
+1. Through the `File Editor` add-on, add the file `/config/scripts/grafana_github_push.sh` and add:
+```bash
+#!/bin/bash
+#
+# Purpose:
+# Push Grafana configuration on other server to github.
+#
+# Usage:
+# ./grafana_github_push.sh SERVER HOST COMMENT
+#
+# SERVER    - Mandatory. Is the remote server in format: user@NAME/IP.
+#             Remember that the server must be able to run commands without password (such as key based login).
+# HOST      - The Grafana host/IP to connect to, including port.
+# COMMENT   - The comment to add to the push-commit.
+#             If empty, the default comment will be: "Minor change."
+#
+# Pre-req. is that the script for pushing Grafana JSON-files to Github exists on the other server as: /srv/grafana-git.sh
+
+# Load environment variables (mainly secrets).
+if [ -f "/config/.env" ]; then
+    export $(cat "/config/.env" | grep -v '#' | sed 's/\r$//' | awk '/=/ {print $1}' )
+fi
+
+# Variables:
+config_dir="/config"
+base_dir="/config/scripts"
+log_dir="/config/logs"
+logfile="${log_dir}/grafana_github_push.log"
+logfile_tmp="${log_dir}/grafana_github_push.tmp"
+rsa_file="/config/.ssh/id_rsa"
+known_hosts_file="/config/.ssh/known_hosts"
+
+touch ${logfile}
+
+# Check server.
+if [ -z "$1" ]; then
+    echo "ERROR. Server must be given."
+    echo "$(date +%Y%m%d_%H%M%S): ERROR. Server must be given." >> ${logfile}
+    exit 1
+else
+    SERVER="$1"
+fi
+
+# Check host.
+if [ -z "$2" ]; then
+    echo "ERROR. Host must be given."
+    echo "$(date +%Y%m%d_%H%M%S): ERROR. Grafana host must be given." >> ${logfile}
+    exit 1
+else
+    HOST="$2"
+fi
+
+# Check comment.
+if [ -z "$3" ]; then
+    NO_COMMENT=1
+    COMMENT="Minor change."
+else
+    NO_COMMENT=0
+    COMMENT="$3"
+fi
+
+echo "$(date +%Y%m%d_%H%M%S): Starting Grafana Github push." >> ${logfile}
+echo "$(date +%Y%m%d_%H%M%S): Server: ${SERVER}" >> ${logfile}
+echo "$(date +%Y%m%d_%H%M%S): Host: ${HOST}" >> ${logfile}
+
+if [ ${NO_COMMENT} -eq 1 ]; then
+    echo "$(date +%Y%m%d_%H%M%S): No comment given, setting comment to default." >> ${logfile}
+fi
+
+# Initialize the remote script.
+RESULT=`ssh -o BatchMode=yes -o UserKnownHostsFile=${known_hosts_file} -i ${rsa_file} ${SERVER} "sudo /srv/grafana-git.sh ${HOST} '${COMMENT}'" 2>> ${logfile}`
+RESULT_CODE=$?
+if [ ${RESULT_CODE} -ne 0 ]; then
+    echo "ERROR. SSH command error. Exit code: ${RESULT_CODE}: ${RESULT}"
+    echo "$(date +%Y%m%d_%H%M%S): ERROR. SSH command error when removing triggering remote script. Exit code: ${RESULT_CODE}: ${RESULT}" >> ${logfile}
+    exit 1
+else
+    echo "$(date +%Y%m%d_%H%M%S): File ${FILE} remote script triggered." >> ${logfile}
+fi
+
+# Get the last row in the log.
+RESULT=`ssh -o BatchMode=yes -o UserKnownHostsFile=${known_hosts_file} -i ${rsa_file} ${SERVER} "tail -1 /srv/grafana-git.log" 2>> ${logfile}`
+
+# Log, and limit logfile to 1000 rows.
+echo "${RESULT}" >> ${logfile}
+tail -n1000 ${logfile} > ${logfile_tmp}
+rm ${logfile}
+mv ${logfile_tmp} ${logfile}
+
+# Show output
+echo "${RESULT}"
+
+exit 0
+```
+2. Through the 'SSH & Web terminal' run the following in the `/config/script` directory (change to fit your installation):
+   - `chmod ug+x grafana_github_push.sh`.
+   - `grafana_github_push.sh pi@192.168.2.30 192.168.2.30:3000 Test`.
+3. Check the log-file `/config/logs/copy_backup.log`.
+   - Isolate if there are errors, and if needed isolate the problem.
+4. Go to server1 and check logfile `/srv/grafana-git.log`.
+   - Isolate if there are errors, and if needed isolate the problem.
+5.  Through the `File Editor` add-on, edit the file [/config/configuration.yaml](https://github.com/slittorin/home-assistant-config/blob/master/configuration.yaml) and add after `shell_command:` (if not already present, add `shell_command:`, mind the spaces. Adapt after your installation):
+```yaml
+  grafana_github_push: /config/scripts/grafana_github_push.sh pi@192.168.2.30 192.168.2.30:3000 "{{ value }}"
+```
+6. Through the `File Editor` add-on, create the file `/config/packages/grafana_github_push.yaml`
+7. Through the `File Editor` add-on, edit the file [/config/configuration.yaml](https://github.com/slittorin/home-assistant-config/blob/master/configuration.yaml) and after `  packages:` (mind the spaces):
+```yaml
+    grafana_github_push: !include packages/grafana_github_push.yaml
+```
+8. Through the `File Editor` add-on, edit the file [/config/packages/grafana_github_push.yaml]https://github.com/slittorin/home-assistant-config/blob/master/packages/grafana_github_push.yaml) and add the following:
+   - Input text for commit message.
+   - Input button.
+   - Automation to trigger shell_command on press of button.
+   - Sensor for retrieving the last row of the log-file `/config/logs/grafana_github.log`.
 
 ## Resource - Lovelace Card Mod
 
