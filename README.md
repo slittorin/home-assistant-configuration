@@ -158,7 +158,7 @@ We could have utilized a standard automation scheme, and run a shell-script dail
 In case we get a server corruption, we also want to copy the files to server1.
 
 Here we needed to take into consideration the following:
-- Ideally we should have have used `rsync`, but this is not installed by default in HA/add-on for Shell/SSH.
+- Ideally we should have have used `rsync`, but this is not installed by default in HA/add-on for Terminal/SSH.
   - Therefore we need to create a script to do a copy.
 - Command shell scripts are terminated by HA after 60 seconds.
   - We therefore add `&` to get the script to not be terminated by HA.
@@ -167,7 +167,7 @@ Here we needed to take into consideration the following:
     2022-03-19 03:01:00 ERROR (MainThread) [homeassistant.components.shell_command] Timed out running command: `/config/scripts/copy_backup.sh pi@192.168.2.30 /srv/ha/backup &`, after: 60s
     ```
 - Directory `/backup` is not directly reachable by command shell triggered by HA.
-  - But exists the add-on for Shell/SSH.
+  - But exists the add-on for Terminal/SSH.
 
 Perform the following:
 1. Through the `File Editor` add-on, add the file `/config/scripts/copy_backup.sh` and add:
