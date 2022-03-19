@@ -801,7 +801,7 @@ As there is no native way to do this, we take the size of the XXXX.
 Pre-requisities:
 - [Preparation in setup](https://github.com/slittorin/home-assistant-setup#preparation).
 
-See also [XXX in Visualizations - Dashboard Home Assistant](https://github.com/slittorin/home-assistant-visualization#git-for-grafana).
+See also [InfluxDB size in Visualizations - Dashboard Home Assistant](https://github.com/slittorin/home-assistant-visualization/blob/main/README.md#influxdb-size).
 
 Perform the following:
 
