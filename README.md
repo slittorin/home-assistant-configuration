@@ -158,7 +158,9 @@ We could have utilized a standard automation scheme, and run a shell-script dail
 
 In case we get a server corruption, we also want to copy the files to server1.
 
-Pre-requisite is [SSH setup
+Pre-requisite is [Preparation in setup](https://github.com/slittorin/home-assistant-setup#preparation).
+
+See also [Github Copy to server1 in Visualizations - Dashboard Home Assistant](https://github.com/slittorin/home-assistant-visualization#copy-to-server1).
 
 Here we needed to take into consideration the following:
 - Ideally we should have have used `rsync`, but this is not installed by default in HA/add-on for Terminal/SSH.
@@ -363,8 +365,6 @@ exit 0
    - Automation to trigger shell_command on press of button.
    - Sensor for retrieving the last row of the log-file for `/config/logs/copy_backup.log`.
 
-See also [Github Copy to server1 in Visualizations - Dashboard Home Assistant](https://github.com/slittorin/home-assistant-visualization#copy-to-server1).
-
 ## Github Push
 
 We want to utilize Github Push instead of Pull as the original files are to reside on my HA-device.\
@@ -373,9 +373,11 @@ Inspiration from the [community](https://community.home-assistant.io/t/sharing-y
 
 Note: HASS.io already has git installed, so no need to install git.
 
-Pre-requisities: That repository `home-assistant-config` is created in Github.
+Pre-requisities:
+- [Preparation in setup](https://github.com/slittorin/home-assistant-setup#preparation).
+- That repository `home-assistant-config` is created in Github.
 
-Se also [Github Push in Visualizations - Dashboard Home Assistant](https://github.com/slittorin/home-assistant-visualization/blob/main/README.md#dashboard---home-assistant).
+See also [Github Push in Visualizations - Dashboard Home Assistant](https://github.com/slittorin/home-assistant-visualization/blob/main/README.md#dashboard---home-assistant).
 
 Perform the following:
 
@@ -581,14 +583,16 @@ exit ${exit_code}
    - Sensor for retrieving the last row of the log-file for `/config/logs/`github_push..log`.
    - Triggers for keeping track of domain-entities.
 
-See also [Github Push Visualization](https://github.com/slittorin/home-assistant-visualization#github-push).
-
 ## Git for Grafana
 
 Besides backup of Grafana, we also want to push the dashboards to Github.
 This to have them also backed up there, and allow them to be shared.
 
-Pre-requisite is that the setup for [Git for Grafana](https://github.com/slittorin/home-assistant-setup#git-for-grafana) is done.
+Pre-requisities:
+- [Preparation in setup](https://github.com/slittorin/home-assistant-setup#preparation).
+- That the setup for [Git for Grafana](https://github.com/slittorin/home-assistant-setup#git-for-grafana) is done.
+
+See also [Git for Grafana in Visualizations - Dashboard Home Assistant](https://github.com/slittorin/home-assistant-visualization#git-for-grafana).
 
 Perform the following:
 1. Through the `File Editor` add-on, add the file `/config/scripts/grafana_github_push.sh` and add:
@@ -707,8 +711,6 @@ exit 0
    - Automation to trigger shell_command on press of button.
    - Sensor for retrieving the last row of the log-file `/config/logs/grafana_github.log`.
 
-See also [Git for Grafana in Visualizations - Dashboard Home Assistant](https://github.com/slittorin/home-assistant-visualization#git-for-grafana).
-
 ## Resource - Lovelace Card Mod
 
 We want to tweak lovelace with CSS styles to various elements of the Home Assistant frontend.\
@@ -749,7 +751,11 @@ We want to keep track of statistics for server1:
 - Swap usage
 - Uptime
 
-Pre-requisite is [Setup of OS/HW statistics](https://github.com/slittorin/home-assistant-setup#oshw-statistics).
+Pre-requisities:
+- [Preparation in setup](https://github.com/slittorin/home-assistant-setup#preparation).
+- [Setup of OS/HW statistics](https://github.com/slittorin/home-assistant-setup#oshw-statistics).
+
+See also [XXX in Visualizations - Dashboard Home Assistant](https://github.com/slittorin/home-assistant-visualization#git-for-grafana).
 
 Perform the following:
 
@@ -759,8 +765,6 @@ Perform the following:
     server1: !include packages/server1.yaml
 ```
 3. Through the `File Editor` add-on, edit the file [/config/packages/server1.yaml](https://github.com/slittorin/home-assistant-config/blob/master/packages/server1.yaml) and add command line sensors to retrieve the stats-file from server1 according above.
-
-See XXX
 
 ## Package - Home Assistant system - Database and tables data
 
@@ -778,6 +782,8 @@ We want to keep track of the following for the HA system:
     - statistics
     - statistics_short_term
 
+See also [XXX in Visualizations - Dashboard Home Assistant](https://github.com/slittorin/home-assistant-visualization#git-for-grafana).
+
 Perform the following:
 
 1. Through the `File Editor` add-on, create the file `/config/packages/database_table_sizes.yaml`
@@ -793,6 +799,11 @@ See XXX
 
 We want to keep track of the database size for InfluxDB.
 As there is no native way to do this, we take the size of the XXXX.
+
+Pre-requisities:
+- [Preparation in setup](https://github.com/slittorin/home-assistant-setup#preparation).
+
+See also [XXX in Visualizations - Dashboard Home Assistant](https://github.com/slittorin/home-assistant-visualization#git-for-grafana).
 
 Perform the following:
 
