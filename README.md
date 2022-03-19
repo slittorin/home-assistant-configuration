@@ -158,6 +158,8 @@ We could have utilized a standard automation scheme, and run a shell-script dail
 
 In case we get a server corruption, we also want to copy the files to server1.
 
+Pre-requisite is [SSH setup
+
 Here we needed to take into consideration the following:
 - Ideally we should have have used `rsync`, but this is not installed by default in HA/add-on for Terminal/SSH.
   - Therefore we need to create a script to do a copy.
@@ -737,6 +739,29 @@ Perform the following:
 1. Through `HACS` in the menu:
    - Add Frontend: `apex-chart-card` by `@RomRider`.
 
+## Package - server1 system - Database and tables data
+
+We want to keep track of statistics for server1:
+- CPU Temp
+- CPU usage (15 min average)
+- Disk usage
+- Memory usage
+- Swap usage
+- Uptime
+
+Pre-requisite is [Setup of OS/HW statistics](https://github.com/slittorin/home-assistant-setup#oshw-statistics).
+
+Perform the following:
+
+1. Through the `File Editor` add-on, create the file `/config/packages/server1.yaml`
+2. Through the `File Editor` add-on, edit the file [/config/configuration.yaml](https://github.com/slittorin/home-assistant-config/blob/master/configuration.yaml) and after `  packages:` (mind the spaces):
+```yaml
+    server1: !include packages/server1.yaml
+```
+3. Through the `File Editor` add-on, edit the file [/config/packages/server1.yaml](https://github.com/slittorin/home-assistant-config/blob/master/packages/server1.yaml) and add command line sensors to retrieve the stats-file from server1 according above.
+
+See XXX
+
 ## Package - Home Assistant system - Database and tables data
 
 We want to keep track of the following for the HA system:
@@ -761,6 +786,8 @@ Perform the following:
     database_table_sizes: !include packages/database_table_sizes.yaml
 ```
 3. Through the `File Editor` add-on, edit the file [/config/packages/database_table_sizes.yaml](https://github.com/slittorin/home-assistant-config/blob/master/packages/database_table_sizes.yaml) and add the sensors according to above.
+
+See XXX
 
 ## Package - Home Assistant system - InfluxDB Size
 
