@@ -782,7 +782,7 @@ We want to keep track of the following for the HA system:
     - statistics
     - statistics_short_term
 
-See also [XXX in Visualizations - Dashboard Home Assistant](https://github.com/slittorin/home-assistant-visualization#git-for-grafana).
+See also [Size of recorderdatabase and tables in Visualizations - Dashboard Home Assistant](https://github.com/slittorin/home-assistant-visualization#size-of-recorder-database-and-tables), and  [min(created) date in Visualizations - Dashboard Home Assistant](https://github.com/slittorin/home-assistant-visualization#mincreated-date-for-tables).
 
 Perform the following:
 
