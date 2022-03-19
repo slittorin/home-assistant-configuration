@@ -793,8 +793,6 @@ Perform the following:
 ```
 3. Through the `File Editor` add-on, edit the file [/config/packages/database_table_sizes.yaml](https://github.com/slittorin/home-assistant-config/blob/master/packages/database_table_sizes.yaml) and add the sensors according to above.
 
-See XXX
-
 ## Package - Home Assistant system - InfluxDB Size
 
 We want to keep track of the database size for InfluxDB.
