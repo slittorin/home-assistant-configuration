@@ -176,7 +176,7 @@ Here we needed to take into consideration the following:
   - But exists the add-on for Terminal/SSH.
 
 Perform the following:
-1. Through the `File Editor` add-on, add the file `/config/scripts/copy_backup.sh` and add:
+1. Through the `File Editor` add-on, add the file `/config/scripts/copy_backup.sh` and add (updated 2023-01-16):
 ```bash
 #!/bin/bash
 #
@@ -229,6 +229,7 @@ else
     REMOTEDIR="$2"
 fi
 
+echo "" >> ${logfile}
 echo "$(date +%Y%m%d_%H%M%S): Starting copy of backup." >> ${logfile}
 
 # We can run this script in differect context, either in shell add-on, or as shell command.
@@ -261,11 +262,13 @@ FILES=`ssh -o BatchMode=yes -o UserKnownHostsFile=${known_hosts_file} -i ${rsa_f
 if [ ! -z "${FILES}" ]; then
     for FILE in ${FILES}; do
         FILE=`basename ${FILE}`
+        echo "${FILE}" >> ${logfile}
         if [ ! -z ${FILE} ]; then
             if [ ! -f "${backup_dir}/${FILE}" ]; then
-                RESULT=`ssh -o BatchMode=yes -o UserKnownHostsFile=${known_hosts_file} -i ${rsa_file} ${SERVER} "rm ${REMOTEDIR}//${FILE}" 2>> ${logfile}`
+                RESULT=`ssh -o BatchMode=yes -o UserKnownHostsFile=${known_hosts_file} -i ${rsa_file} ${SERVER} "rm ${REMOTEDIR}/${FILE}" 2>> ${logfile}`
                 RESULT_CODE=$?
                 if [ ${RESULT_CODE} -ne 0 ]; then
+                    echo "$(date +%Y%m%d_%H%M%S): For file ${FILE} does not exists locally, and is removed in remote directory." >> ${logfile}
                     echo "ERROR. SSH command error. Exit code: ${RESULT_CODE}: ${RESULT}"
                     echo "$(date +%Y%m%d_%H%M%S): ERROR. SSH command error when removing remote file. Exit code: ${RESULT_CODE}: ${RESULT}" >> ${logfile}
                     exit 1
@@ -289,6 +292,7 @@ if [ ! -z "${FILES}" ]; then
                     RESULT=`ssh -o BatchMode=yes -o UserKnownHostsFile=${known_hosts_file} -i ${rsa_file} ${SERVER} "rm ${REMOTEDIR}//${FILE}" 2>> ${logfile}`
                     RESULT_CODE=$?
                     if [ ${RESULT_CODE} -ne 0 ]; then
+                        echo "$(date +%Y%m%d_%H%M%S): For remote file ${FILE} exists locally but files are not equal in size, therefore removed in remote directory." >> ${logfile}
                         echo "ERROR. SSH command error. Exit code: ${RESULT_CODE}: ${RESULT}"
                         echo "$(date +%Y%m%d_%H%M%S): ERROR. SSH command error when removing remote file. Exit code: ${RESULT_CODE}: ${RESULT}" >> ${logfile}
                         exit 1
@@ -331,7 +335,6 @@ if [ ! -z "${FILES}" ]; then
 else
     echo "$(date +%Y%m%d_%H%M%S): No files in local directory." >> ${logfile}
 fi
-
 # Log, and limit logfile to 1000 rows.
 RESULT="$(date +%Y%m%d_%H%M%S): No error. Removed files: ${FILES_REMOVED}. Copied files: ${FILES_COPIED}."
 echo "${RESULT}" >> ${logfile}
