@@ -680,7 +680,7 @@ else
 fi
 
 # Get the last row in the log.
-RESULT=`ssh -o BatchMode=yes -o UserKnownHostsFile=${known_hosts_file} -i ${rsa_file} ${SERVER} "tail -1 /srv/grafana-git.log" 2>> ${logfile}`
+RESULT=`ssh -o BatchMode=yes -o UserKnownHostsFile=${known_hosts_file} -i ${rsa_file} ${SERVER} "tail -1 /srv/log/grafana-git.log" 2>> ${logfile}`
 
 # Log, and limit logfile to 1000 rows.
 echo "${RESULT}" >> ${logfile}
