@@ -136,6 +136,27 @@ Persistence can be made according to the following:
 
 # Resources, Packages and Integrations
 
+## OS/HW statistics
+
+Pre-requisite is [OS/HW statistics setup](https://github.com/slittorin/home-assistant-setup#oshw-statistics).
+
+We want to track  OS/HW statistics over time:
+- CPU utilization in percentage over 15 minutes.
+- CPU temperature in degrees celcius.
+- Disk utilization in percent.
+- RAM utilization in percent.
+- Swap utilization in percent.
+- Uptime (last reboot).
+
+Perform the following:
+1. Through the `File Editor` add-on, add the file [/config/scripts/remote_stats.sh](https://github.com/slittorin/home-assistant-config/blob/master/scripts/remote_stats.sh)):
+2. Through the 'SSH & Web terminal' run the following in the `/config/script` directory (change to fit your installation):
+   - `chmod ug+x remote_stats.sh`.
+3. Through the `File Editor` add-on, edit the file [/config/packages/backup.yaml](https://github.com/slittorin/home-assistant-config/blob/master/packages/server1.yaml) and add the following:
+   - Command line sensors for CPU utilization, CPU temp, Disk utilizaation, RAM utilization, Swap utilization and Uptime.
+4. After 30 minutes check the log-file `/config/logs/remote_stats.log`.
+   - Isolate if there are errors, and if needed isolate the problem.
+
 ## Backup
 
 We want to have the following backup-scheme:
