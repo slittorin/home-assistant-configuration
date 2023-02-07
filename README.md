@@ -153,8 +153,8 @@ Perform the following:
 1. Through the `File Editor` add-on, add the file [/config/scripts/remote_stats.sh](https://github.com/slittorin/home-assistant-config/blob/master/scripts/remote_stats.sh)):
 2. Through the 'SSH & Web terminal' run the following in the `/config/script` directory (change to fit your installation):
    - `chmod ug+x remote_stats.sh`.
-3. Through the `File Editor` add-on, edit the file [/config/packages/backup.yaml](https://github.com/slittorin/home-assistant-config/blob/master/packages/server1.yaml) and add the following:
-   - Command line sensors for CPU utilization, CPU temp, Disk utilizaation, RAM utilization, Swap utilization and Uptime.
+3. Through the `File Editor` add-on, edit the file [/config/packages/server1.yaml](https://github.com/slittorin/home-assistant-config/blob/master/packages/server1.yaml) and add the following:
+   - Command line sensors for CPU utilization, CPU temp, Disk utilization, RAM utilization, Swap utilization and Uptime.
 4. After 30 minutes check the log-file `/config/logs/remote_stats.log`.
    - Isolate if there are errors, and if needed isolate the problem.
 
