@@ -6,6 +6,7 @@
 - [Generic information](https://github.com/slittorin/home-assistant-configuration#generic-information)
 - [Governing principles](https://github.com/slittorin/home-assistant-configuration#governing-principles)
 - [Resources, Packages and Integrations](https://github.com/slittorin/home-assistant-configuration#resources-packages-and-integrations)
+  - [OS/HW statistics](https://github.com/slittorin/home-assistant-configuration/blob/main/README.md#oshw-statistics)
   - [Backup](https://github.com/slittorin/home-assistant-configuration#backup)
   - [Copy backup files to server1](https://github.com/slittorin/home-assistant-configuration#copy-backup-files-to-server1)
   - [Git for Grafana](https://github.com/slittorin/home-assistant-configuration#git-for-grafana).
