@@ -63,7 +63,9 @@ Secondarily I would like to be able to control and perform automation activities
   - Utilize [Packages](https://www.home-assistant.io/docs/configuration/packages/) to bundle together services/entities in packages.
   - Make sure that the new format to manage functions is utilized from [2021.10.x](https://community.home-assistant.io/t/updating-templates-with-the-new-default-values-in-2021-10-x/346198).
   - To allow Home Assistant to correctly identify and utilize sensors/data, always utilize:
-    - When utilizing customized entities, utilize `device_class`. Valid types can be found under each platform [here](https://www.home-assistant.io/docs/configuration/customizing-devices/#device-class).
+    - When utilizing customized entities, utilize `device_class`. Valid types can be found under each platform, such as:
+      - [sensor](https://www.home-assistant.io/integrations/sensor/#device-class)
+      - [binary_sensor](https://www.home-assistant.io/integrations/binary_sensor/#device-class)
     - Utilize `state_class` where valid when defining sensor/template sensors. Valid types can be found [here](https://developers.home-assistant.io/docs/core/entity/sensor/#available-state-classes).
       - Note that legacy configuration format (see modern above), do not support `state_class`.
     - Utilize `unit_of_measurement` for all entities/sensors. Standard units is found [here](https://github.com/home-assistant/core/blob/dev/homeassistant/const.py).
