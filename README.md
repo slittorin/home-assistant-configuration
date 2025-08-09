@@ -162,22 +162,22 @@ Perform the following:
 
 ## Backup
 
-We want to have the following backup-scheme:
-- Daily backups Monday through Saturday, kept for 7 days.
-- Weekly backups on Sunday, kept for 8 weeks (56+1 days).
+We want to have the following backup-scheme (updated early 2025 due to built in backup functions for HA):
+- Daily backups Monday through Sunday ~~Saturday~~, kept for 14 ~~7~~ days.
+~~- Weekly backups on Sunday, kept for 8 weeks (56+1 days).~~
 
-We could have utilized a standard automation scheme, and run a shell-script daily to remove older files, however since the filenaming-convention on file-level för backup files are not readable, we instead utilize a backup-integration [auto-backup](https://github.com/jcwillox/hass-auto-backup) that will take care of the work for us.
+~~We could have utilized a standard automation scheme, and run a shell-script daily to remove older files, however since the filenaming-convention on file-level för backup files are not readable, we instead utilize a backup-integration [auto-backup](https://github.com/jcwillox/hass-auto-backup) that will take care of the work for us.~~
 
-1. Through `HACS` in the menu:
-   - Add Integration: `Auto Backup` by `@jcwillox`.
-2. Restart the Home Assistant server under `Server management`.
-   - This may take a while as the custom component is installed.
-3. Go to `Configuration` -> `Devices and services` and add Integration `auto backup`.
-4. Through the `File Editor` add-on, edit the file [/config/packages/backup.yaml](https://github.com/slittorin/home-assistant-config/blob/master/packages/backup.yaml) and add the following:
-   - Daily backup scheme according above.
-   - Weekly backup schema according above.
-5. For the Auto backup integration:
-   - Change backup timeout to 60 minutes.
+~~1. Through `HACS` in the menu:~~
+   ~~- Add Integration: `Auto Backup` by `@jcwillox`.~~
+~~2. Restart the Home Assistant server under `Server management`.~~
+   ~~- This may take a while as the custom component is installed.~~
+~~3. Go to `Configuration` -> `Devices and services` and add Integration `auto backup`.~~
+~~4. Through the `File Editor` add-on, edit the file [/config/packages/backup.yaml](https://github.com/slittorin/home-assistant-config/blob/master/packages/backup.yaml) and add the following:~~
+   ~~- Daily backup scheme according above.~~
+   ~~- Weekly backup schema according above.~~
+~~5. For the Auto backup integration:~~
+   ~~- Change backup timeout to 60 minutes.~~
 
 ## Copy backup files to server1
 
